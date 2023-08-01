@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    案例1 如果用户按了s键 就把光标定到搜索框里
+    案例2 放大搜索框
+    <style>
+        .con {
+            display: none;
+            background-color: #00aeef;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="search" id="search1">
+
+
+    <div class="search">
+        <input type="text" class="jd" placeholder="查询单号">
+        <div class="con">123</div>
+    </div>
+    <script>
+        // 1
+        let search1 = document.querySelector('#search1');
+        document.addEventListener('keyup', function (e) {
+            if (e.key === 's') {
+                search1.focus();  // 方法 搜索框获得焦点
+            }
+        })
+
+
+        // 2
+        let con = document.querySelector('.con'),
+            input = document.querySelector('.jd');
+        input.addEventListener('keyup', function (e) {  // keydown\keypress在文本框里的特点: 他们两个事件触发时，文字还没落入文本框中
+            con.style.display = 'block';
+            con.innerHTML = this.value;
+            input.addEventListener('blur', function (e) {
+                con.style.display = 'none';
+            })
+            input.addEventListener('focus', function (e) {
+                con.style.display = 'block';
+            })
+
+        })
+
+    </script>
+</body>
+
+</html>

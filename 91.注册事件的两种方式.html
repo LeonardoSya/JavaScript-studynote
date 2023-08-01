@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    注册事件有两种方式: 
+
+    传统方式(on开头 注册事件唯一性: 同一个元素同一个事件只能设置一个处理函数 后注册是处理函数会覆盖前注册的处理函数)  
+
+    监听注册方式:  w3c的推荐方式 addEventListenr() 这是一个方法  同一个元素同一个事件可以注册多个监听处理函数(监听器)
+    语法: eventTarget.addEventListenr(type, listenr[, useCapture])  该方法将指定的监听器注册到eventTarget(目标对象)上 当对象触发指定事件时 就会执行事件处理函数
+    该方法接收三个函数:
+    type: 事件类型字符串(因此要加'') 比如click\mouseover(不需要on)
+    listenr: 事件处理函数 事件发生时会调用该监听函数(类似function)
+    useCapture: 可选参数 是一个布尔值 默认是false 
+</head>
+
+<body>
+    <button class="btn">1</button>
+    <button class="btn2">2</button>
+    <script>
+        // 传统方式
+        let btn = document.querySelector('.btn');
+        btn.onclick = function () {
+            alert('1');
+        }
+        btn.onclick = function () {
+            alert('2');  // 会覆盖上一个注册的处理函数 只会alert('2')
+        }
+
+
+        //  事件侦听注册事件
+        let btn2 = document.querySelector('.btn2');
+        btn2.addEventListener('click', function () {
+            alert('3');
+        })
+        btn2.addEventListener('click', function () {
+            alert('4');   // 同一个元素同一个事件可以注册多个监听处理函数 不会覆盖  因为这是一个方法 所以可以多次调用
+        })
+    </script>
+</body>
+
+</html>

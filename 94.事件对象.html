@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    event对象代表事件的状态 比如键盘按键的状态、鼠标的位置、鼠标按钮的状态
+    事件发生后 跟事件相关的一系列信息数据的集合都放到这个对象里面 这个对象就是事件对象event 它有很多属性和方法
+    当我们注册事件时 event对象就会被系统自动创建 并依次传递给事件监听器(事件处理函数)
+    兼容性问题解决方法: e = e || window.event (写在函数里面)
+</head>
+
+<body>
+    <div class="div1">123</div>
+    <div class="div2">456</div>
+    <script>
+        // 传统写法
+        let div1 = document.querySelector('.div1');
+        div1.onclick = function (event) {  // event就是一个事件对象 写道侦听函数的小括号里 当作形参来看
+            // 事件对象有了事件才会存在 是系统自动创建的 不需要传递参数
+            // 事件对象 是事件的一系列相关数据的集合(属性和方法)
+            console.log(event);
+        }
+
+        // 事件侦听写法
+        let div2 = document.querySelector('.div2');
+        div2.addEventListener('click', function (e) {
+            console.log(e);
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var money = 0;
+        alert('本机名为拉拉号ATM\n' + ' \n' + '欢迎您的使用');
+        while (money <= 99999) {
+            var menu = prompt('您想对本机做什么呢\n' + ' \n' + '1.存钱\n2.取钱\n3.查看余额\n4.登出\n5.对本机发癫');
+            if (menu == '1') {
+                var save_money = prompt('要往本机存多少钱呢');
+                money += parseFloat(save_money);
+                alert('现在的余额是' + money + '哦')
+            } else if (menu == '2') {
+                var draw_money = prompt('要从本机取走多少钱呢');
+                money -= parseFloat(draw_money);
+                alert('现在的余额是' + money + '哦')
+            } else if (menu == '3') {
+                alert('余额是' + money + '哦\n请务必努力工作\n多存点钱把本机喂得满满的吧');
+            } else if (menu == '4') {
+                alert('快滚');
+            } else if (menu == '5') {
+                alert('别在这发癫');
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

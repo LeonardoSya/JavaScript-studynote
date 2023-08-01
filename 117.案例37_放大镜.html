@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            position: relative;
+        }
+
+        div {
+            position: absolute;            
+        }
+
+        .pic {
+            width: 200px;
+            height: 200px;
+            background-color: #b2acac;
+        }
+
+        #img {
+            width: 100px;
+        }
+
+        .cover {
+            display: none;
+            background-color: #00afef33;
+            width: 100px;
+            height: 100px;
+            z-index: 1;
+        }
+
+        .magnifying {
+            margin: 200px;
+            width: 400px;
+            height: 400px;
+            background-color: #b2acac;
+        }
+    </style>
+
+    <!-- /* 引入外部js文件 */ -->
+    <!-- <script src=""></script> -->
+</head>
+
+<body>
+    <div class="pic">
+        <div class="cover"></div>
+        <img src="../杂物/img/帝宝和麦昆（右).png" alt="" id="img">
+    </div>
+    <div class="magnifying"></div>
+
+    <script>
+        window.addEventListener('load', function () {  // 页面全部加载完后再执行js代码
+            let pic = document.querySelector('.pic'),
+                img = document.querySelector('img'),
+                cover = document.querySelector('.cover'),
+                mag = document.querySelector('.magnifying');
+            pic.addEventListener('mouseover', function () {
+                cover.style.display = 'block';
+                mag.style.display = 'block';
+            })
+            pic.addEventListener('mouseout', function () {
+                cover.style.display = 'none';
+                mag.style.display = 'none';
+            })
+            pic.addEventListener('mousemove', function (e) {  // 鼠标在盒子内的位置
+                var x = e.pageX - this.offsetLeft;
+                var y = e.pageY - this.offsetTop;
+                // console.log([x, y]);
+                var coverX = x - cover.offsetWidth / 2;
+                var coverY = y - cover.offsetHeight / 2;
+                //     if (coverX <= 0) {
+                //         coverX = 0;
+                //     } else {
+                //         cover.style.left = coverX + 'px';
+                //     }
+                //     if (coverY <= 0) {
+                //         coverY = 0;
+                //     } else {
+                //         cover.style.top = coverY + 'px';
+                //     }
+                // })
+                if (coverX <= 0) {
+                    coverX = 0;
+                } else if (coverX >= 100) {
+                    coverX = 100;
+                } else {
+                    cover.style.left = coverX + 'px';
+                }
+                if (coverY <= 0) {
+                    coverY = 0;
+                } else if (coverY >= 100) {
+                    coverY = 100;
+                } else {
+                    cover.style.top = coverY + 'px';
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            position: relative;
+        }
+
+        input {
+            width: 300px;
+            height: 30px;
+            line-height: 40px;
+            outline: none;
+            border: 0;
+            border-bottom: 1px solid #454545;
+            color: rgb(206, 203, 203);
+        }
+
+        div {
+            position: absolute;
+            top: 2px;
+            left: 309px;
+            height: 30px;
+            line-height: 30px;
+            color: rgba(31, 31, 31, 0.773);
+            font-size: 14px;
+        }
+
+        .false {
+            color: red;
+        }
+
+        .true {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" name="" id="" value="请输入6-16位登录账号">
+    <div></div>
+    <script>
+        let input = document.querySelector('input');
+        input.onfocus = function () {
+            if (this.value === '请输入6-16位登录账号') {
+                this.value = '';
+            }
+            input.style.color = '#000';
+        }
+        let div = document.querySelector('div');
+        input.onblur = function () {
+            if (this.value === '') {
+                this.value = '请输入6-16位登录账号';
+            }
+            if (this.value.length < 6 || this.value.length > 16) {
+                div.className = 'false';
+                div.innerHTML = '不合法的账号';
+            } else {
+                div.className = 'true';
+                div.innerHTML = '账号格式正确';
+            }
+            input.style.color = 'rgb(206, 203, 203)'
+        }
+    </script>
+</body>
+
+</html>

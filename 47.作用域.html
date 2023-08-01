@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作用域</title>
+    作用域: 变量在某个范围内起作用和效果 目的是为了提高程序的可靠性、减少命名冲突
+    全局作用域: 整个script标签或一个单独的js文件
+    局部作用域/函数作用域: 在函数内部的就是局部作用域(这个代码的名字旨在函数内部起效)
+    es6中新增块级作用域let 可以解决闭包作用
+
+
+    因此 变量分为全局变量和局部变量(在全局/局部作用域下的变量)
+
+    全局变量只有在浏览器关闭的时候才会销毁 比较占用内存资源
+    局部变量 当其所在代码块被执行的时候会被初始化 当代码块运行结束后就会自动销毁 比较节省内存空间
+
+    作用域链本质上是底层的变量查找机制 函数被执行时 会优先在当前函数作用域中查找变量 查找不到则依次逐级查找父级作用域直到全局作用域
+    子作用域能够访问父作用域 父级作用域无法访问子级作用域
+    <script>
+        let num = 10; // 全局变量
+        console.log(num);
+
+        function fn() {  // 函数的形参也可以看作局部变量 函数外该形参不起效
+            let num = 20;  // 局部变量 局部变量在函数外不能使用(在{}外无效)
+            return num;
+        }
+        console.log(fn());
+
+        // 特例: 在函数内部 没有声明直接赋值的变量 也是全局变量 (不建议使用)
+
+
+        // 作用域链 内部函数可以访问外部函数变量的机制 用链式查找决定哪些数据能够被内部函数访问 就近原则
+        function fn() {  // 外部函数
+            let num = 20;
+            function fn1() {  // 内部函数
+                console.log(num);  // 20
+            }
+            fn1();
+        }
+        fn();
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

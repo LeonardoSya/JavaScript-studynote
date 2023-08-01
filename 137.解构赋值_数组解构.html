@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    数组解构: 将数组的单元值快速批量赋值给一系列变量的简洁语法
+    可以利用数组解构实现变量内容交换
+    可以利用剩余参数 解决变量少单元值多的情况
+    可以利用默认参数 防止undefined传递
+    按需导入赋值
+    支持多维数组解构
+
+    js中必须加 ; 的情况:
+    1.立即执行函数 2.数组解构
+    (function f() {})(); 或 ;(function f() {})()
+    ;[b, a] = [a, b]
+
+
+</head>
+
+<body>
+    <script>
+        // 普通数组解构
+        const arr = [1, 2, 3];
+        // 批量声明变量abc 同时将数组单元值123依次赋值给abc
+        const [a, b, c] = arr;
+
+        // 数组解构实现变量内容交换
+        let x = 1;
+        let y = 3;
+        [y, x] = [x, y];
+        console.log([x, y]); // 3 1
+
+        // if (arr[j] > arr[j + 1]) {
+        //     [arr[j + 1], arr[j]] = [arr[j] + arr[j + 1]];
+        // }
+
+        // 利用剩余参数 解决变量少单元值多的情况
+        const [aa, bb, ...cc] = [1, 2, 3, 4, 5]
+        console.log(aa)  // 1
+        console.log(bb)  // 2
+        console.log(cc)  // [3, 4, 5] 真数组
+
+        // 利用默认参数 防止undefined传递
+        const [xx = 0, yy = 0, zz = 0, t] = [1, 2]
+        console.log(xx)  // 1
+        console.log(yy)  // 2
+        console.log(zz)  // 0
+        console.log(t)   // undefined
+
+        // 按需导入赋值
+        const [i, k, , h] = [1, 2, 3, 4];
+        console.log(i);  // 1
+        console.log(k);  // 2
+        console.log(h);  // 4
+
+        // 支持多维数组解构
+        const [q, w, e]= [1, 2, [3, 4]]
+        console.log(e);  // [3, 4]
+    </script>
+</body>
+
+</html>

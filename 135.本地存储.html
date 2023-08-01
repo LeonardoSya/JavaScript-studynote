@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    本地存储:
+    数据存储在用户浏览器中 设置读取方便 甚至页面刷新不丢失数据
+    容量较大:sessionStorage约5M localStorage约20M
+    只能存储字符串 可以将对象JSON.stringify()编码后存储
+
+    window.sessionStorage
+    生命周期为 关闭浏览器窗口
+    在同一个窗口(页面)下数据可以共享
+    以键值对形式 存储使用
+    sessionStorage.setltem(key, value); 存储数据
+    sessionStorage.getItem(key); 获取数据
+    sessionStorage.removeItem(key); 删除数据
+    sessionStorage.clear(); 清空所有数据
+
+    window.localStorage
+    生命周期 永久生效 关闭页面也会存在 除非手动删除
+    可以多窗口(页面)共享(同一浏览器可以共享)
+    以键值对形式存储
+    语法和sessonStorage一模一样
+
+    本地存储处理复杂数据类型
+    JSON.stringify() 将复杂数据类信息转换成JSON字符串
+    JSON.parse() 把JSON字符串转换为对象
+
+    <!-- 随着网络通信的普及，我们需要处理跨平台数据传输的问题。每个平台都有自己的数据格式，为了让数据能够在不同平台之间自由地传输和解析，我们就需要一个通用的数据格式。这时，JSON就应运而生了。
+    JSON（JavaScript Object Notation），是一种轻量级的数据交换格式。JSON采用完全独立于语言的文本格式，用来表示简单数据结构和对象，常用于异构系统间的数据交换，也常用于前端开发中的数据传输。
+    JSON由于其数据格式简洁、规范化、可读性强、易于解析和生成等优点，越来越受到开发者们的喜爱，成为了编程领域中最为流行的数据传输格式之一。 -->
+</head>
+
+<body>
+    <input type="text" id="text">
+    <button class="set">存储数据</button>
+    <button class="get">获取数据</button>
+    <button class="remove">删除数据</button>
+    <button class="del">清空所有数据</button>
+    <button class="always-set">永久存储数据</button>
+    <button class="always-del">清空所有数据</button>
+    <button class="username">获取用户名</button>
+    <input type="checkbox" name="" id="remember">记住用户名
+
+    <!-- <script>
+        let inputText = document.querySelector('#text');
+        let set = document.querySelector('.set'),
+            get = document.querySelector('.get'),
+            remove = document.querySelector('.remove'),
+            del = document.querySelector('.del');
+
+
+        set.addEventListener('click', function () {
+            let value = inputText.value;  // 获取表单内容
+            sessionStorage.setItem('name', value);  // 存储数据
+        })
+        get.addEventListener('click', function () {
+            console.log(sessionStorage.getItem('name'));  // 获取并打印数据
+        })
+        remove.addEventListener('click', function () {
+            sessionStorage.removeItem('name');  // 删除数据
+        })
+        del.addEventListener('click', function () {
+            sessionStorage.clear();  // 清空数据
+        })
+
+
+        let alwaysSet = document.querySelector('.always-set');
+        let alwaysDel = document.querySelector('.always-del');
+        alwaysSet.addEventListener('click', function () {
+            let value = inputText.value;
+            localStorage.setItem('always-name', value);   // 其他页面也可以使用 永久存储的数据 只要在同一个浏览器中都行
+        })
+        alwaysDel.addEventListener('click', function () {
+            localStorage.removeItem('always-name');
+        })
+
+        // 案例
+        let user = document.querySelector('.username');
+        let remember = document.querySelector('#remember');
+        user.addEventListener('click', function () {
+            if (localStorage.getItem('always-name')) {
+                user.innerHTML = 'username:' + localStorage.getItem('always-name');
+                remember.checked = true;
+            }
+            remember.addEventListener('click', function () {
+                if (this.checked) {
+                    localStorage.setItem('always-name', user.innerHTML)
+                } else {
+                    localStorage.removeItem('always-name');
+                }
+            })
+
+        })
+    </script> -->
+
+    <script>
+        const obj = {
+            name: 'aaa',
+            age: 18,
+            gender: 'M'
+        }
+        // localStorage.setItem('obj', obj)
+        // console.log(localStorage.getItem('obj'));   // [object Object] 说明存储复杂数据类型不能直接使用
+
+        // 将复杂数据类型转换成JSON字符串 再存储到本地
+        localStorage.setItem('obj', JSON.stringify(obj))
+        console.log(localStorage.getItem('obj'));    //  {"name":"aaa","age":18,"gender":"M"}  JSON对象是一个字符串
+        console.log(typeof localStorage.getItem('obj'));   // string
+
+        const newObj = JSON.parse(localStorage.getItem('obj'))
+        console.log(newObj);   // {name: 'aaa', age: 18, gender: 'M'} 对象
+    </script>
+</body>
+
+</html>

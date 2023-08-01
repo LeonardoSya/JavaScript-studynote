@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function getMax(num1, num2) {
+            // if (num1 > num2) {
+            //     return num1;
+            // } else {
+            //     return num2;
+            // }
+            return num1 > num2 ? num1 : num2;
+        }
+        console.log(getMax(3, 4));
+        console.log(getMax(11, 6));
+
+        // 取出任意数组中最大值
+        function getArrMax(arr) {   // arr接收一个数组 实参是一个数组送过去
+            let max = arr[0];
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i] > arr[i + 1]) {
+                    max = arr[i];
+                }
+            }
+            return max;
+        }
+        let result = getArrMax([2, 5, 7, 4, 5, 1, 17, 9]);   // 实际开发中常用一个变量接收函数返回结果
+        console.log(result);
+
+        // 翻转任意数组
+        function fn(arr) {
+            let newArr = [];
+            for (let i = arr.length - 1; i >= 0; i--) {
+                newArr[newArr.length] = arr[i];
+            }
+            return newArr;
+        }
+        console.log(fn([4, 5, 6, 7, 9, 11]));
+
+        // 函数封装冒泡排序
+        function fn(arr) {
+            for (let i = 0; i < arr.length; i++) {
+                for (let j = 0; j < arr.length - i; j++) {
+                    if (arr[j] > arr[j + 1]) {
+                        let temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                    }
+                }
+            }
+            return arr;
+        }
+        console.log(fn([5, 23, 46, 8, 123, 7597, 34]));
+
+        //函数封装判断闰年
+        function fn(year) {
+            let result = false;
+            if (year % 4 == 0 && year % 100 !== 0 || year % 400 == 0) {
+                result = true;
+            }
+            return result;
+        }
+        console.log(fn(1640));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

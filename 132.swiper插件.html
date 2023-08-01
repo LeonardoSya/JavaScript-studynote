@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 引入swiper css文件 -->
+    <link rel="stylesheet" href="swiper/swiper-bundle.min.css">
+    <!-- 引入swiper js文件 -->
+    <script src="swiper/swiper-bundle.min.js"></script>
+    <title>Document</title>
+
+    使用swiper插件 引入js和cs文件 然后cv网页源代码的css\body\js部分
+    注意不要随意修改类名 可更改css中swiper大小 js要写window.ad('load', fn)使页面加载完后再初始化
+
+    更多的参数在官网api文档中查阅并修改!! 或者覆盖样式
+
+    <style>
+        html,
+        body {
+            position: relative;
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* // 给swiper定义一个大小 */
+        .swiper {
+            width: 240px;
+            height: 320px;
+        }
+
+        img {
+            height: 320px;
+        }
+
+        .swiper-slide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 18px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .swiper-slide:nth-child(1n) {
+            background-color: rgb(206, 17, 17);
+        }
+
+        .swiper-slide:nth-child(2n) {
+            background-color: rgb(0, 140, 255);
+        }
+
+        .swiper-slide:nth-child(3n) {
+            background-color: rgb(10, 184, 111);
+        }
+
+        .swiper-slide:nth-child(4n) {
+            background-color: rgb(211, 122, 7);
+        }
+
+        .swiper-slide:nth-child(5n) {
+            background-color: rgb(118, 163, 12);
+        }
+
+        .swiper-slide:nth-child(6n) {
+            background-color: rgb(180, 10, 47);
+        }
+
+        .swiper-slide:nth-child(7n) {
+            background-color: rgb(35, 99, 19);
+        }
+
+        .swiper-slide:nth-child(8n) {
+            background-color: rgb(0, 68, 255);
+        }
+
+        .swiper-slide:nth-child(9n) {
+            background-color: rgb(218, 12, 218);
+        }
+
+        .swiper-slide:nth-child(10n) {
+            background-color: rgb(54, 94, 77);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Swiper -->
+
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="../杂物/img/横屏背景1.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="../杂物/img/横屏背景2.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="../杂物/img/横屏背景3.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="../杂物/img/横屏背景1.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="../杂物/img/横屏背景3.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="../杂物/img/横屏背景2.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="../杂物/img/横屏背景5.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="../杂物/img/横屏背景1.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="../杂物/img/横屏背景3.jpg" alt=""></div>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('load', function name(params) {   // 注意这里要等页面加载完成之后初始化 
+            var swiper = new Swiper(".mySwiper", {
+                effect: "cards",
+                grabCursor: true,
+            });
+        })
+
+    </script>
+</body>
+
+</html>

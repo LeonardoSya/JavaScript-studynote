@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组</title>
+    <!-- 概念 -->
+    数组(Array)是一组数据的集合
+    每个数据被称为 元素
+    数组中可存放 任意类型的元素
+    数组是 将一组数据存储在 单个变量名下 的优雅方式
+
+    <script>
+        // 利用new 创建数组
+        // var arr = new Array();  // 创建了一个空的数组
+        // 利用数组字面量创建数组
+        var arr = ['pink', true, 1, 2];   // 这种方法更常用
+
+        // 访问(获取)数组元素
+        // 数组的索引  索引(下标) 数组下标从0开始
+        console.log(arr[1]); // true
+        console.log(arr[0]); // pink
+        console.log(arr[4]); // undefined 没有这个元素
+
+
+        // 遍历(遍历：从头到尾访问一遍)数组   利用for循环访问所有数组元素
+        var arr1 = ['拉拉', '昭昭', '叽叽', 'yy'];
+        for (var i = 0; i < arr1.length; i++) {    // arr1.length 用来动态检测数组长度(元素个数)
+            console.log(arr1[i]);
+        }    // 因为数组索引号从0开始 所以i 从0开始 并且用<不用<=         输出的适合arr[i] i计数器当作索引号来用
+
+
+        // 新增数组元素 修改索引号 追加数组元素
+        var arr = [1, 2, 3];
+        arr[3] = 4;
+        console.log(arr);
+        // 如果索引号为已占有元素 则替换元素
+        arr[0] = 5;
+        console.log(arr);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

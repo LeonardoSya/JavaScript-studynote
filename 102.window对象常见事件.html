@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>window对象常见事件</title>
+    1.窗口加载事件
+    (不建议)window.addEventListener('load', function(){}) 窗口加载事件 当文档内容完全加载完才会触发该事件 这样就可以把js写到页面元素上方
+    (建议)document.addEventListener('DOMContentLoaded', function() {}) 窗口加载事件 仅当DOM加载完成 不包括样式表、图片、flash等等
+    如果页面图片很多的话 从用户访问到load触发需要较长的时间 交互效果就不能实现 因此用DOMContentLoaded事件比较合适
+
+    2.调整窗口大小事件
+    window.addEventListener('resize', function() {})
+    我们经常利用这个事件完成响应式布局
+
+
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: #00aeef;
+        }
+    </style>    <script>
+        // 1.窗口加载事件
+        document.addEventListener('DOMContentLoaded', function () {
+            let btn = document.querySelector('button');
+            btn.addEventListener('click', function () {
+                console.log('1');
+            })
+        })
+
+
+        // 2.调整窗口大小事件
+        document.addEventListener('DOMContentLoaded', function () {
+            let div = document.querySelector('div');
+            window.addEventListener('resize', function () {
+                console.log('窗口发生变化');  // 窗口每次变化都会触发该事件
+                console.log(window.innerWidth);
+                if (window.innerWidth <= 800) {
+                    div.style.display = 'none';  // 当窗口宽度小于800 则隐藏这个div
+                } else {
+                    div.style.display = 'block';
+                }
+            })
+        })
+
+    </script>
+</head>
+
+<body>
+    <button>1</button>
+    <div></div>
+</body>
+
+</html>

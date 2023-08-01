@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul li {
+            cursor: pointer;
+        }
+
+        .current {
+            width: 30px;
+            height: 30px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tab">
+        <div class="tab_list">
+            <ul>
+                <li class="current">介绍</li>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+        </div>
+        <div class="tab_con">
+            <div class="item" style="display: block;">介绍1</div>
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+            <div class="item">4</div>
+        </div>
+    </div>
+
+    <script>
+        // 1.点击某一个 当前的模块底色变成红色 其余不变（排他思想） 用修改类名的方式绑定事件
+        let lis = document.querySelector('.tab_list').querySelectorAll('li');
+        let items = document.querySelectorAll('.item');
+        for (let i = 0; i < lis.length; i++) {
+            // 给tab_list里面所有的li添加索引号
+            lis[i].setAttribute('index', i);
+            lis[i].onclick = function () {
+                // 干掉所有人：其余的li清除class这个类
+                for (let i = 0; i < lis.length; i++) {
+                    lis[i].className = '';
+                }
+                // 留下我自己: 只给自己添加类名
+                this.className = 'current';
+
+                // 2. 显示内容模块 给上面的tab_list里面的所有li添加自定义属性 属性值从0开始编号
+                let index = lis[i].getAttribute('index');
+                // 当我们点击tab_list里面的某个小li 让tab_con里面对应序号的内容显示 其余隐藏(排他思想)
+                for (let i = 0; i < items.length; i++) {
+                    items[i].style.display = 'none';
+                }
+                items[index].style.display = 'block';
+
+            }
+        }
+    </script>
+</body>
+
+</html>

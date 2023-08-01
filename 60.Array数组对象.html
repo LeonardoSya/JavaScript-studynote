@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    目录
+    两种方法检测是否为数组  instanceof运算符 Array.isArray()
+    数组转换为字符串  toString()  join()
+    添加数组元素   push() unshift()
+    删除数组元素   pop() shift()
+    合并数组   arr1.concat(arr2)
+    截取数组   slice(1, 4)
+
+    删除或替换数组  splice(4, 1, 'pink')
+    <script>
+        // 复习 创建数组的两种方式
+        let arr = [1, 2, 3];  // 利用数组字面量
+        let arr1 = new Array(1, 2, 3);  // 实例化Array这个构造函数 通过Array构造函数生成一个新的array对象 
+        
+
+
+        //  两种方法检测是否为数组
+        let arr2 = [];
+        console.log(arr instanceof Array);   // instanceof运算符 如果对象是数组则返回true
+        console.log(Array.isArray(arr2));   // Array.isArray()  参数为需检测的值  如果对象是数组则返回true
+
+        // 数组转换为字符串
+        let arr5 = [1, 2, 3];
+        console.log(arr5.toString());  // 1, 2, 3   把整个数组转换成字符串 用逗号分隔每一项
+
+        let arr6 = ['green', 'pink', 'red'];   // join('分隔符') 把整个字符转换成字符串 能够自定义分隔符
+        console.log(arr6.join());  // green, pink, red
+        console.log(arr6.join('-')); // green-pink-red
+        console.log(arr6.join(' & ')); // green & pink & red
+
+
+        // 添加数组元素   push() 和 unshift()
+
+        //  push() 给数组结尾 追加新的元素
+        let arr3 = [1, 2];
+        // arr3.push('pink');  
+        console.log(arr3.push('pink'));  // 返回 3   push完毕后 返回的是新数组的长度
+        console.log(arr3);  // push后 原数组也会发生变化 返回 1, 2, pink
+
+        //unshift  给数组开头 添加新的元素
+        arr3.unshift('blue')
+        console.log(arr3);  // 返回 blue, 1, 2, pink
+
+
+        // 删除数组元素  pop()  shift()
+        // arr3.pop();  
+        console.log(arr3.pop());    // 不跟参数 一次只能删除一个   返回值是被删除的那个元素
+        arr3.shift();  // 也不跟参数 一次只能删除一个
+        console.log(arr3);  // 返回1, 2
+
+
+        // concat()合并两个以上数组 不影响原数组  返回值是一个新数组
+        let arr7 = [1, 2, 3],
+            arr8 = [4, 5]; 
+        console.log(arr9 = arr7.concat(arr8));
+
+        // slice()数组截取  参数是 [begin, end)  返回被截取项目的新数组
+        // slice() 方法返回一个新的数组对象，这一对象是一个由 begin 和 end 决定的原数组的浅拷贝（包括 begin，不包括end）。原始数组不会被改变。
+        const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+        console.log(animals.slice(2));   // ["camel", "duck", "elephant"] 只写begin就截取begin
+        console.log(animals.slice(2, 4));  // ["camel", "duck"]
+        console.log(animals.slice(1, 5));  //  ["bison", "camel", "duck", "elephant"]
+
+        // splice() 方法通过删除或替换现有元素 或者原地添加新的元素来修改数组，并以数组形式返回被修改的内容。此方法会改变原数组。
+        // splice(第几个开始, 要删除个数, 原地添加新的元素)
+        const months = ['Jan', 'March', 'April', 'June'];
+        months.splice(1, 0, 'Feb');
+        console.log(months);  //  ["Jan", "Feb", "March", "April", "June"]
+
+        months.splice(4, 1, 'May');
+        console.log(months);  //  ["Jan", "Feb", "March", "April", "May"]
+
+
+
+
+        // 案例 筛选数组 把>10的删除 剩余的放入新数组
+
+        let arr4 = new Array(1, 2, 3, 4, 7, 12, 14),
+            newArr = new Array();
+        for (let i = 0; i < arr4.length; i++) {
+            if (arr4[i] < 10) {
+                // newArr[newArr.length] = arr4[i];
+                newArr.push(arr4[i]);
+            }
+        }
+        console.log(newArr);
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

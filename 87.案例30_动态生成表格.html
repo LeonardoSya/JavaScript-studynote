@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>科目</th>
+                <th>成绩</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+    <script>
+        // 1.准备好学生的数据 用对象形式存储每个学生的数据
+        // 采取数组形式存储对象 每个数组元素是一个对象
+        let data = [
+            {
+                name: 'lala',
+                subject: 'js',
+                score: 100
+            }, {
+                name: 'zz',
+                subject: 'c++',
+                score: 90
+            }, {
+                name: 'ff',
+                subject: 'java',
+                score: 80
+            }, {
+                name: 'yy',
+                subject: 'matlab',
+                score: 100
+            }
+        ];
+
+        // 2.所有的数据放到tbody的行里面 循环创建多个行(对应多少人)
+        let tbody = document.querySelector('tbody');
+        for (let i = 0; i < data.length; i++) {   // 外层for循环管行 tr
+            // a.创建元素 tr行  并插入
+            let tr = document.createElement('tr');
+            tbody.appendChild(tr);
+
+            // b.行里面创建单元格 每行单元格的数量取决于每个对象里的属性个数
+            for (let k in data[i]) {    // 内层for循环管列 td
+                // 创建单元格
+                let td = document.createElement('td');
+                // 把对象里的属性值给td 
+                // console.log(data[i][k]);   // obj[k]得到对象属性值
+                td.innerHTML = data[i][k];
+
+                tr.appendChild(td);
+            }
+
+            // c.创建能进行删除操作的单元格
+            let td = document.createElement('td');
+            td.innerHTML = '<a href="javascript:;">删除</a>';
+            tr.appendChild(td);
+
+        }
+
+        // 3. 删除操作
+        let del = document.querySelectorAll('a');
+        for (let i = 0; i < del.length; i++) {
+            del[i].onclick = function () {
+                // 点击a后删除当前所在行  node.removeChild(child)
+                // a放在单元格里 所以a的父级是单元格 a父级的父级是tr[i]  tr[i]的父级是tbody
+                tbody.removeChild(this.parentNode.parentNode);   // 链接的父级*3.removeChild(链接的父级*2)
+
+            }
+        }
+
+    </script>
+</body>
+
+</html>

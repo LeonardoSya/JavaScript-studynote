@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>var let const 区别</title>
+    const let 是块级作用域   var没有块级作用域  var只有函数和全局作用域
+    const let 在声明变量/常量前 无法获取到 称为暂时性死区
+    const 声明常量 常量不能被修改  let var 声明变量 可以被修改
+    const 在声明时必须赋值 let var 不需要
+
+    <script>
+        var num = 1;
+        var num = 2;  // var 允许被重复定义
+
+        let str = 2;
+        let str = 3;  // let 不允许被重复定义 会报错
+
+        let num = 3;
+        num = 4;      // let 允许值的修改
+
+        const num1 = 4;
+        num1 = 5;     // const 不允许被重复定义 也不允许值的修改
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

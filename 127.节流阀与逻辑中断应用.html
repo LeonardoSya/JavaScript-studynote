@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    节流阀: 防止轮播图按钮连续点击造成播放过快
+    目的: 上一个函数动画内容执行完毕 再去执行下一个函数动画 让事件无法连续触发
+    思路: 利用回调函数 添加一个变量来控制 锁住函数和解锁函数
+
+    <style>
+        div {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="obj"></div>
+    <script>
+        let obj = document.querySelector('div');
+        let flag = true;
+        function animate(obj, target, callback) {
+            if (flag) {             // 设置节流阀
+                flag = false;
+                clearInterval(obj.timer);
+                obj.timer = setInterval(() => {
+                    let step = obj.offsetLeft + (target - obj.offsetLeft) / 20;
+                    if (obj.offsetLeft == target) {
+                        clearInterval(obj.timer);
+                        // if (callback) {
+                        //     callback();
+                        // }
+                        callback && callback();  // 这种写法与上面三行效果相同   短路运算：&&左右都为true 才执行
+                    }
+                    obj.style.left = Math.sign(step) * Math.ceil(Math.abs(step)) + 'px';
+                }, 10);
+            }
+        }
+        obj.addEventListener('click', function () {
+            animate(obj, 100, function () {
+                flag = true;       // 回调函数中 打开节流阀
+            })
+        })
+
+    </script>
+</body>
+
+</html>

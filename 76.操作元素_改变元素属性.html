@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    除了innerText innerHTML 改变元素内容之外,
+    src href id alt title 等元素属性也可以被修改
+
+    另外 表单属性需要专门操作
+    type value checked selected disabled
+</head>
+
+<body>
+    <button id="one">1</button>
+    <button id="two">2</button>
+    <img src="../CSS/img/bg2.png" alt="" title="">
+    
+
+    <button id="inputBtn">this is a button</button>
+    <input type="text" value="">
+
+    <script>
+        // 修改元素属性  修改src路径
+        let one = document.querySelector('#one');
+        let two = document.querySelector('#two');
+        let img = document.querySelector('img');
+        one.onclick = function () {
+            img.src = '../CSS/img/bg3.png';
+            img.title = '1';
+        }
+        two.onclick = function () {
+            img.src = '../CSS/img/bg2.png';
+            img.title = '2';
+        }
+
+
+        // 修改表单属性
+        let btn = document.querySelector('#inputBtn');
+        let input = document.querySelector('input');
+        btn.onclick = function () {
+            input.value = 'clicked';
+            btn.disabled = true;  // 点击后btn就禁用
+            // 或者写 this.disabled = true; 效果相同  this 指向的是事件函数的调用者(btn)
+        }
+    </script>
+</body>
+
+</html>

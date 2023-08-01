@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数</title>
+    函数: 封装一段可被重复调用执行的代码块 目的: 大量代码重复使用
+    使用步骤: 声明、调用
+
+    函数名一般是动词 
+    函数被调用的时候才会执行
+
+    封装: 对外只提供一个简单的接口
+
+    形参: 形式上的参数 实参: 实际上的参数 实参是传递给形参的
+    参数的作用: 在函数内部有些值不固定 可以通过参数在调用函数时传递不同的值进去
+    函数的参数个数不限 也可以没有参数
+
+    break 结束当前循环体(如for while)
+    continue 跳出本次循环 继续执行下次循环
+    return
+    <script>
+        function name(形参1, 形参2……) {   // 形参：接收实参 形参类似于一个变量但是不需要声明 接收并存放实参
+
+        }
+        name(实参1, 实参2……);
+
+        function getSum(num1, num2) {
+            return num1 + num2;
+        }
+        console.log(getSum(num1, num2));
+
+        // 求和函数
+        function getSum(num1, num2) {
+            let sum = 0;
+            for (let i = num1; i <= num2; i++) {
+                sum += i;
+            }
+            return sum; // 函数将值返回给调用者 函数只用来实现某种功能
+            // return返回到上一级 该函数之后的部分不再执行
+            //return只能返回一个值 例如return num1, num2;只返回num2
+        }
+        console.log(getSum(1, 1000));   // 若实参个数多于形参 则取到形参的个数 (多余的实参不参与运算)  若形参多于实参 则多余的形参被定义为undefined
+
+
+        // return利用数组返回多个值 
+        function getResult(num1, num2) {
+            return [num1 + num2, num1 - num2, num1 * num2]
+        }
+        let result = getResult(1, 2);
+        for (let i = 0; i < result.length; i++) {   // 遍历数组
+            console.log(result[i]);
+        }
+
+
+        // 函数的两种声明方式
+        // 1.函数关键字自定义函数
+        function 函数名(params) {
+
+        }
+        // 2.匿名函数 (变量名不是函数名)
+        let 变量名 = function (形参) {
+
+        }
+        变量名(实参);  // 因为匿名函数 所以调用只能用变量名
+    </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件</title>
+    js使我们有能力创建动态页面 而事件是可以被js侦测到的行为
+    简单理解 事件: 触发响应的一种机制
+
+    事件组成三要素: 事件源 事件类型 事件处理程序
+    1.事件源: 事件被触发的对象
+    2.事件类型: 如何触发 + 什么事件
+    3.事件处理程序: 通过一个函数赋值的方式完成
+
+    执行事件三步骤:
+    1.获取事件源
+    2.注册事件(绑定事件)
+    3.添加事件处理程序(采取函数赋值的方式)
+
+    常见的鼠标事件: 
+    onclick  鼠标点击左键
+    onmouseover  鼠标经过
+    onmouseout  鼠标离开
+    onfocus  获得鼠标焦点触发
+    onblur  失去鼠标焦点触发
+    onmousemove  鼠标移动触发
+    onmouseup  鼠标弹起触发
+    onmousedown  鼠标按下触发
+</head>
+
+<body>
+    <button id="btn">button</button>
+    <div>123</div>
+    <script>
+        let btn = document.getElementById('btn');   // 获得了事件源
+        btn.onclick = function () {  // 事件类型: 点击(onclick) + alert()
+            alert('onclick');
+        }
+
+        let clickDiv = document.querySelector('div');
+        clickDiv.onclick = function () {
+            console.log('onclick');
+        }
+    </script>
+</body>
+
+</html>

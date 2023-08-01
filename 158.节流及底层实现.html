@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    节流throttle: 单位时间内 频繁触发事件 只执行一次
+    节流使用场景: 高频事件 mousemove 页面缩放resize scroll
+
+
+    防抖和节流总结: 
+    防抖 单位时间内频繁触发事件 只执行最后一次
+    节流 单位时间内频繁触发事件 只执行一次
+    <style>
+        .box {
+            background-color: #00afef60;
+            font-size: 22px;
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+    <script src="153.lodash.min.js"></script>
+</head>
+
+<body>
+    <div class="box"></div>
+    <script>
+        // 需求 鼠标在盒子上移动 不管移动多少次 每隔500ms才+1
+        let i = 1
+        function mouseMove() {
+            document.querySelector('.box').innerHTML = i++
+            // 如果里面存在大量消耗性能的代码 如dom操作、数据处理等 可能造成卡顿
+        }
+        // document.querySelector('.box').addEventListener('mousemove', _.throttle(mouseMove, 500))
+
+
+        // 封装一个节流函数
+        function throttle(fn, time) {
+            let timeout = null
+            return function () {
+                if (!timeout) {
+                    timeout = setTimeout(() => {
+                        fn()  // 需要节流的函数内容
+                        // 在定时器中清空定时器
+                        timeout = null  
+                        // 在定时器中如果clearTimeout或clearInterval是无法清除干净定时器的 因为此时定时器还在运作中 所以要想在定时器函数中清除定时器 必须 定时器变量名 = null
+                    }, time);
+                }
+            }
+        }
+        document.querySelector('.box').addEventListener('mousemove', throttle(mouseMove, 500))
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>常用键盘事件</title>
+    keyup 被松开时触发
+    keydown 被按下时触发
+    keypress 被按下时触发 但不识别功能键(ctrl\shift\箭头 等)
+
+
+    键盘事件对象
+    e.key  返回按下的键
+    e.Code 返回按下键的ASCII码值
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        #div {
+            position: relative;
+            top: 5em;
+            /* left: 2em; */
+        }
+
+        #pic {
+            width: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div"><img src="../杂物/img/帝宝和麦昆（右).png" alt="" id="pic"></div>
+
+    <script>
+        // 三个事件的执行顺序是 keydown keypress keyup
+        // keyup keydown 事件不区分字母大小写  keypress区分大小写
+        let num = 0;
+        document.addEventListener('keydown', function () {
+            console.log(num);
+            num += 1;
+        })
+
+        document.addEventListener('keyup', function (e) {
+            console.log(e);  // 返回一个 KeyboardEvent
+            console.log(e.Code);   // 返回一个ASCII码
+        })
+
+        // 案例
+        let pic = document.querySelector('#div');
+
+        let right = 1,
+            left = 1;
+        document.addEventListener('keydown', function (e) {
+            if (e.key == 'd') {
+                console.log('d');
+                pic.style.left += right + 'px';
+                right += 1;
+            } else if (e.key == 'a') {
+                console.log('a');
+                pic.style.left -= left + 'px';
+                left += 1;
+            }
+        })
+
+    </script>
+</body>
+
+</html>

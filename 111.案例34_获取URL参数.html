@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    // 配合上一节的跳转页面同时获取URL参数(数据在不同页面中传递)案例
+
+</head>
+
+<body>
+    <div></div>
+
+    <script>
+        console.log(location.search);  // 得到    ?user_name=amier
+        // 用截取字符串方法去掉 ?   substr('起始位置', 截取字符个数)
+        let params = location.search.substr(1);  // 第二个参数省略 则默认截取到最后一个
+        // 这样params里面存的就是user_name=andy
+        console.log(params);  // 得到    user_name=amier
+
+        // 利用=把字符串分割为数组  split('=')
+        let arr = params.split('=');
+        console.log(arr);  // 得到2个数组 里面分别是   0: "user_name   1:"amier" 
+          
+        // 把数据写入div中
+        let div = document.querySelector('div');
+        div.innerHTML = '晚上好' + arr[1]; // 只需要 amier 这个数组
+    </script>
+</body>
+
+</html>

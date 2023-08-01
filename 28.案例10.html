@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var all = prompt('请输入日语22有多少名学生');
+        // prompt取过来的数据是字符串型 需要转换为数字型
+        var average = 0,
+            num = 0;
+        for (var i = 1; i <= all; i++) {
+            num = num + parseFloat(prompt('这是第' + i + '名学生的成绩'));
+        }
+        average = num / all;
+        alert('他们的总分是' + num + '分');
+        alert('他们的平均分是' + average + '分')
+
+        var num = prompt('要打印几颗星星呢')
+        var line = prompt('要打印几行呢')
+        var str = '';
+        for (var index = 1; index <= num; index++) {
+            str = str + '星';
+        }
+        
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

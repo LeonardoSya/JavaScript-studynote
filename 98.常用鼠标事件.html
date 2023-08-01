@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>常用鼠标事件</title>
+    contextmenu 控制应该何时显示上下文菜单 主要用于禁用鼠标右键菜单
+    selectstart 开始选中 主要用于禁止鼠标选中
+
+    鼠标事件对象(MouseEvent):
+    e.clientX 返回鼠标相对于 浏览器窗口可视区的 x坐标
+    e.clientY 返回鼠标相对于 浏览器窗口可视区的 y坐标
+    e.pageX 返回相对于 文档页面的 x坐标
+    e.pageY 返回相对于 文档页面的 y坐标
+
+    mousemove 鼠标移动事件
+
+
+    <style>
+        img {
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="../img/圆形头像.png" alt="">
+
+    <script>
+        // 禁用鼠标右键菜单
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        })
+
+        // 禁止选中文字
+        document.addEventListener('selectstart', function (e) {
+            e.preventDefault();
+        })
+
+        // 鼠标事件对象
+        document.addEventListener('click', function (e) {
+            console.log(e);  // 当点击页面时 返回PointEvent\MouseEvent
+        })
+
+        document.addEventListener('click', function (e) {
+            // e.clientX  可视区(当前页面空白处)
+            console.log(e.clientX);
+            console.log(e.clientY);
+            // e.pageX  整个文档页面
+            console.log(e.pageX);
+            console.log(e.pageY);
+        })
+
+
+        // 图片跟随鼠标案例
+        // 每次移动鼠标 都会获得最新的鼠标坐标 把x\y设为图片的top\left值
+        let pic = document.querySelector('img');
+        document.addEventListener('mousemove', function (e) {
+            let x = e.pageX,
+                y = e.pageY;
+            pic.style.left = x + 'px';
+            pic.style.top = y + 'px';
+
+        })
+    </script>
+</body>
+
+</html>

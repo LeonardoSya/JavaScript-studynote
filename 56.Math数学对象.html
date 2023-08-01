@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  
+    <script>
+        // 1.数学对象 Math
+        // Math不是一个构造器(构造函数) 不需要new来调用  它具有数学常数和函数的属性和方法 跟数字相关的运算可以使用Math中的成员 直接使用属性和方法即可
+        console.log(Math.PI);   // 一个属性 圆周率派
+        console.log(Math.max(3, 6, 2));  // 一个方法   Math.max()函数 返回作为输入参数的最大数字
+        // 其他常用Math对象
+        Math.floor()  // 向下取整
+        Math.ceil()  // 向上取整  ceil天花板
+        Math.round()  // 四舍五入 就近取整 注意-3.5结果是-3  .5往大了取
+        Math.abs(-1) ;  Math.abs('-1')  // 输出1  绝对值 abs自动把字符串隐式转换
+
+        // 原理:  eg.利用对象封装自己的数学对象 里面有PI、最大值和最小值
+        let myMath = {     // 以后实际开发中经常需要自己封装自己的对象  里面包含了各种属性和方法
+            PI: 3.141592653,
+            max: function () {
+                let max = arguments[0];
+                for (let i = 1; i < arguments.length; i++) {
+                    if (arguments[i] > max) {
+                        max = arguments[i];
+                    }
+                }
+                return max;
+            },
+            min: function () {
+                let min = arguments[0];
+                for (let i = 1; i < arguments.length; i++) {
+                    if (arguments[i] < min) {
+                        min = arguments[i];
+                    }
+                }
+                return min;
+            }
+
+        }
+        console.log(myMath.PI);  // 调用我自己封装的这个数学对象 
+        console.log(myMath.min(3, 5, 7));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

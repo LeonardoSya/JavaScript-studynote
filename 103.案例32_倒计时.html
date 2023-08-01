@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            background-color: #000;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            text-align: center;
+            margin: 5px;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hour"></div>
+    <div class="minute"></div>
+    <div class="second"></div>
+
+    <script>
+        let hour = document.querySelector('.hour');
+        let minute = document.querySelector('.minute');
+        let second = document.querySelector('.second');
+        function countDown() {
+            let countDownTime = (+new Date('2023-3-27 9:00:00') - +new Date()) / 1000;  // 用户输入时间的总毫秒数 - 当前时间的总毫秒数   并且剩余毫秒转化为秒
+            hours = parseInt(countDownTime / 60 / 60 % 24);
+            minutes = parseInt(countDownTime / 60 % 60);
+            seconds = parseInt(countDownTime % 60);
+            hour.innerHTML = hours;
+            minute.innerHTML = minutes;
+            second.innerHTML = seconds;
+        }
+        countDown();  // 先调用一次 这样页面刚刷新的时候就也会显示时间
+        let hourTimeOut = setInterval(countDown, 1000);  // 每隔1秒调用一次countDown()
+
+    </script>
+</body>
+
+</html>

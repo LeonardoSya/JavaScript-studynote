@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    缓动动画算法: (target - offset) / 10 作为每次移动的步长
+
+    动画函数添加回调函数: 将这个函数作为参数传递到另一个函数内, 当那个函数执行完之后再执行传入的函数 这个过程就是回调
+    回调函数写到定时器结束的位置
+    <style>
+        .test1 {
+            /* 动画函数加定位 */
+            position: absolute;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background-color: #00afef6b;
+        }
+
+        .test2 {
+            position: absolute;
+            display: block;
+            width: 30px;
+            height: 30px;
+            background-color: #77e3697b;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="btn">click it</button>
+    <button class="btnn">click it again</button><button class="btnnn">goback</button>
+    <div class="test1"></div>
+    <span class="test2"></span>
+
+    <script>
+        // 封装时传递2个参数: 动画对象和移动时的距离
+        function animate(obj, target, callback) {  // 目标对象 目标位置 回调函数形参 NO.2 相当于执行了 callback = function(){} 要调用的时候callback()就行了
+            clearInterval(obj.timer);   // 清除原先的定时器 避免多次触发事件造成重复调用定时器bug
+            //  如果多个元素都使用某个动画函数 每次都要声明定时器 我们可以给不同的元素使用不同的定时器(自己专门用自己的定时器)  其核心原理是: js是一门动态语言 可以很方便的给当前对象添加属性
+            obj.timer = setInterval(() => {   // 使用obj.timer 这样写只是给obj添加了一个属性 避免重复声明定时器变量在内存中开辟空间 
+                if (obj.offsetLeft == target) {
+                    clearInterval(obj.timer);   // 设置定\时器结束条件
+                    // 回调函数写到定时器结束之后
+                    if (callback) {  // 判断有没有回调函数的参数传递进来?  如果有 就调用它
+                        callback();  // NO.3
+                    }
+                }
+                let step = obj.offsetLeft + (target - obj.offsetLeft) / 50;    //  缓动动画 盒子当前的值+一个不断变化的值 step作为步长 
+                obj.style.left = Math.sign(step) * Math.ceil(Math.abs(step)) + 'px';   // Math.sign()返回正负号 Math.abs()返回绝对值  正值向上取整避免小数运算 负值向下取整避免小数运算
+            }, 10);
+        }
+
+
+        let testOne = document.querySelector('.test1');
+        // animate_move(testOne, 100);
+        let testTwo = document.querySelector('.test2');
+        animate(testTwo, 300);
+        let btn = document.querySelector('.btn');
+        let btnn = document.querySelector('.btnn');
+        let btnnn = document.querySelector('.btnnn');
+        btn.addEventListener('click', function () {  // 当我们不断点击按钮 元素动画会很快 因为开启了多次计时器 解决方案是让元素只有一个定时器
+            animate(testOne, 500);
+        })
+
+        btnn.addEventListener('click', function () {
+            animate(testOne, 300, function () {
+                testOne.style.backgroundColor = '#00aeef';
+            });  // 第三个实参 是一个函数 NO.1
+        })
+        btnnn.addEventListener('click', function () {
+            animate(testOne, 0);
+        })
+    </script>
+</body>
+
+</html>

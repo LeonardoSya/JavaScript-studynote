@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    document.write()   文档流执行完毕后会导致页面重绘
+    element.innerHTML    将内容写入某个DOM节点  当不采取拼接字符串 而是采取数组形式拼接时 效率更高 但结构稍微复杂
+    document.creatElement    创建多个元素效率略低 但结构更清晰
+    当动态创建大量元素时 建议采取innerHTML数组形式拼接
+</head>
+
+<body>
+    <div class="inner">11</div>
+    <div class="create">22</div>
+    <div class="inner2">33</div>
+    <script>
+        // 1. 直接将内容写入页面的内容流 但是文档流执行完毕(整个页面加载完了) 则它会导致页面全部重绘
+        // document.write('<div>1</div>');  // 页面重绘: 整个页面只剩这个div了 原先内容没了
+
+        // 2. innerHTML
+        let inner = document.querySelector('.inner');
+        for (let i = 0; i < 10; i++) {
+            inner.innerHTML += '<a href="#">百度</a>';    // 大量拼接字符串 比较耗费内存、耗时
+
+        }
+
+        // 3. creatElement
+        let create = document.querySelector('.create');
+        for (let i = 0; i < 10; i++) {
+            let a = document.createElement('a');   // 创建新元素 速度远快于innerHTML
+            create.appendChild(a);
+
+        }
+
+        // 2. 因此 我们可以采用追加数组的方式改进innerHTML(数组形式拼接)
+        let inner2 = document.querySelector('.inner2');
+        let arr = [];
+        for (let i = 0; i < 10; i++) {
+            arr.push('<a href="#">百度</a>');   // 循环一次 就往数组里添加一个链接            
+        }
+        inner2.innerHTML = arr.join('');  // 因为数组中是逗号分隔的 这里用join数组转换为字符串
+        // 这样改innerHTML效率就高了 甚至还快于createELement
+
+    </script>
+</body>
+
+</html>

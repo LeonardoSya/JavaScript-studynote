@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    浅拷贝和深拷贝只针对引用类型
+    深拷贝: 拷贝的是对象 不是地址
+
+    深拷贝的常见方法:
+    1. 通过递归实现深拷贝: 当我们在普通拷贝时直接赋值, 如果遇到数组则再次调用递归函数, 如果遇到对象则再次调用递归, 我们会先解决Array后解决Object
+    2. lodash库的cloneDeep函数
+    3. JSON.stringify()
+</head>
+
+<body>
+    <script>
+        // 1. 递归实现深拷贝(简版)
+        const obj = {
+            name: 'qja',
+            age: 18,
+            hobby: ['play', 'game']
+        }
+        const o = {}
+        // 拷贝函数
+        function deepCopy(newObj, oldObj) {
+            for (let k in oldObj) {   // 遍历对象
+                // 先处理数组的问题  再处理对象的问题 顺序不能颠倒 因为在js中数组也是对象 万物皆对象
+                if (oldObj[k] instanceof Array) {  // 如果属性值属于数组类型 则执行
+                    newObj[k] = []  // 因为hobby里面装的是数组 所以先给个空数组 用来接收新数组
+                    deepCopy(newObj[k], oldObj[k])  // 递归 再次用到for循环遍历对象  但此时 newObj[k]是新对象里的新数组hobby oldObj[k]是旧对象里的旧数组hobby
+                } else if (oldObj[k] instanceof Object) {
+                    newObj[k] = {}
+                    deepCopy(newObj[k], oldObj[k])
+                } else {
+                    // k 属性名 name    oldObj[k] 属性值 'qja'
+                    newObj[k] = oldObj[k]     // newObj[k] === o.name   把旧对象的属性 对应赋值给新对象的属性
+                }
+            }
+        }
+        deepCopy(o, obj)  // 函数调用 o是新对象 obj是旧对象
+        console.log(o, obj);
+
+
+    </script>
+
+
+</body>
+
+</html>

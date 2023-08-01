@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>new关键字执行过程</title>
+    new一次对象 就在内存空间中开辟了一个新空间 
+    指针指向不同地址 所以才创建出不同的对象实例
+    <script>
+        function Hero(name, position, score) {
+            this.name = name;
+            this.position = position;
+            this.score = score;
+            this.influence = function (influence) {
+                console.log(influence);
+            }
+        }
+
+        let mengQi = new Hero('梦奇', '打野', 10000);    
+
+        // new关键字执行过程
+        //  1. new 构造函数可以 在内存中创建一个空的对象
+        //  2. this 指向刚才创建的空对象   this是指向这个对象的指针
+        //  3. 执行构造函数里面的代码 给空对象添加属性和方法
+        //  4. 返回这个对象   因此构造函数不需要return new可以让构造函数返回这个对象
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

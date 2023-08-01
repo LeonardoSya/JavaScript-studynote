@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    需求1: 给数组扩展求最大值方法和求和方法
+</head>
+
+<body>
+    <script>
+        // 自己定义数组扩展方法 求和、最大值 并且定义的这个方法在任何数组实例对象都可以使用  自定义的方法写到obj.prototype身上
+
+        const arr = [1, 2, 3]  // == const arr = new Array()  实例化
+        Array.prototype.max = function (arr) {
+            return Math.max(...this)   // 展开运算符
+            // 原型函数里的this指向实例对象 实例对象是arr 因此...this可以解决传实参的问题
+        }
+        console.log(arr.max());   // 3
+
+        Array.prototype.sum = function () {
+            return this.reduce((prev, current) => prev + current, 0)  // 单行箭头函数不需要加{}
+        }
+        console.log([1, 2, 3].sum());  // 6
+        console.log([11, 22, 33].sum());  // 66==[]
+    </script>
+</body>
+
+</html>

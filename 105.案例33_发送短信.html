@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" placeholder="输入内容"><button>发送</button>
+
+    <script>
+        let input = document.querySelector('input'),
+            btn = document.querySelector('button');
+        btn.addEventListener('click', function () {
+            input.value = '';
+            this.disabled = true;
+            let countDownTime = 10;
+            this.innerHTML = '还剩下' + countDownTime + '秒可再次输入';
+            let countDown = setInterval(() => {
+                if (countDownTime == 0) {
+                    btn.disabled = false;  // 这里的btn则不能改写成this 因为setInterval()中this指向window
+                    btn.innerHTML = '再次发送';
+                    clearInterval(countDown);
+                } else {
+                    countDownTime--;
+                    btn.innerHTML = '还剩下' + countDownTime + '秒可再次输入';
+                }
+            }, 100);
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>arguments的使用</title>
+    
+    当我们不确定有多少个参数传递的时候 可以使用arguments来获取
+    arguments实际上是当前函数的一个内置对象 所有函数都内置好了一个arguments对象 只有函数才有arguments对象
+    arguments对象中存储了 传递的所有实参
+
+    arguments展示形式是一个伪数组 因此可以进行遍历 伪数组具有如下特点：
+    具有length属性
+    按索引方式储存数据 (i=0,1,2……)
+    不具有数组的push、pop等方法
+    <script>
+        function fn() {
+            // console.log(arguments);   // 里面存储了所有传递过来的实参 arguments展示形式是一个伪数组 
+            for (let i = 0; i < arguments.length; i++) {
+                console.log(arguments[i]);
+            }
+        }
+        fn(1, 2, 3);
+
+        function getMax() {
+            let max = arguments[0];
+            for (let i = 1; i < arguments.length; i++) {
+                if (arguments[i] > max) {
+                    max = arguments[i];
+                }
+            }
+            return max;
+        }
+        console.log(getMax(2, 3, 5, 3645, 2456, 234));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

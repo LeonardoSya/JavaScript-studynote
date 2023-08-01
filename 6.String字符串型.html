@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 2.字符串型 String
+        // 字符串可以是引号中的任意文本 可以是双引号或单引号  推荐使用单引号
+        // 字符串嵌套: 单套双
+        var str = '111"22"11';
+        // 字符转义符
+        \n newline换行
+        \\ 斜杠
+        \' 单引号
+        \" 双引号
+        \t tab缩进
+        \b blank空格
+        // 转义字符要写到引号--里面
+        var str1 = "我是一个\n程序员"
+
+
+
+        // 1. 检测获取字符串的长度 length
+        var str = 'my name is andy';
+        console.log(str.length);  // 15
+
+        // 2. 字符串的拼接 +   只要有字符串和其他类型相拼接 最后的结果是字符串型
+        console.log('hello' + ' ' + 'world'); // 字符串的 hello world
+        console.log('pink' + 18); // 字符串的 pink18
+        console.log(12 + 12); // 字符串的 24
+        console.log('12' + 12); // 字符串的 1212
+        // 数值相加 字符相连
+
+        // 3.字符串的拼接加强
+        var age = 19;
+        console.log('zyy' + age + '岁');
+        变量不要写到字符串里面, 是通过和字符串相连的方式实现的
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

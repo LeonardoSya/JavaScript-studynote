@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 逻辑或 参与短路运算
+        // 表达式1 || 表达式2
+
+        逻辑与 一串运算从左往右数 有错误的就输出最前面一个错误的 全对就输出最后一个 （一旦不行就开摆
+        逻辑或 一串运算从左往右数 有正确的就输出最前面一个正确的 全错就输出最后一个 （瘸子里挑将军
+
+        console.log(123 || 456);  // 123
+        console.log(NaN || 0 || '');  // ''
+
+        // 练习
+        var num = 0;
+        console.log(123 || num++); // 输出123 但是！！因为短路性 所以没有执行num++ !! num依旧是0
+        console.log(num);  // 0
+        
+        // 逻辑中断很重要 会影响程序运行结果
+
+        a=1 
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    实例对象的对象原型__proto__ 指向 构造函数的原型对象prototype
+
+    实例对象有一个内置属性对象原型__proto__  指向构造函数的原型对象prototype 之所以实例对象可以使用构造函数原型对象prototype的属性和方法 就是因为实例对象有__proto__
+    
+    __proto__是js非标准属性  [[prototype]]和__proto__ 语义相同
+    __proto__表示当前实例对象指向哪个原型对象prototype
+    __proto__对象原型里面也有一个内置属性constructor  指向创建该实例对象的构造函数 (prototype里的constructor也是指向创建该原型对象的构造函数)
+
+
+</head>
+
+<body>
+    <script>
+        function Person() {
+            
+        }
+        const zyy = new Person()
+        console.log(zyy.__proto__);  //  object{constructor:f}
+        console.log(zyy.__proto__ === Person.prototype);  // true
+        console.log(zyy.__proto__.constructor);  // f Person{} 实例对象的对象原型指向创建该实例的构造函数
+    </script>
+</body>
+
+</html>

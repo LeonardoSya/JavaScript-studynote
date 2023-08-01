@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+ 
+    </script>
+</head>
+
+<body>
+    为什么需要数据类型？  不同数据所需占用的存储空间不同 为了充分利用存储空间 定义了不同的数据类型 
+    js是一种弱类型/动态语言 这意味着不用提前声明变量 在程序运行中类型会根据等号右边的值 自动确定
+
+    var num; // 这里还不确定num是什么数据类型
+    var num = 10; // 到这里才确定num是数字型 因为值为10
+
+    js拥有动态类型 因此 相同的变量可用作不同的类型
+    var x = 6;  // x为数字
+    var x = 'bill';  // x为字符串
+
+
+
+    
+    数据类型的分类 :  简单数据类型(Number,String,Boolean,Undefined,Null)  复杂数据类型(object)
+
+    简单数据类型:
+    Number   数字型  包含整型值和浮点型值 如21、2.1  默认值是0  js中前面加0表示八进制 前面加0x表示十六进制
+    Boolean  布尔值类型  如true false 等价于1和0  默认值false
+    String   字符串类型  如"张三"  js中字符串都带引号  默认值""
+    Undefined  var a; 声明了变量但没给值 此时 a = undefined  默认值undefined
+    Null     var a = null; 声明变量a为空值  默认值是null
+    
+</body>
+
+</html>

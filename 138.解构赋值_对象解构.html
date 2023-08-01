@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    对象解构是将对象属性和方法快速批量赋值给一系列变量的简洁语法
+
+    对象属性的值 将被赋值给予 属性名相同 的变量
+    注意 解构的变量名不要与外部的变量名冲突
+    对象中找不到与变量名一致的属性时变量值为undefined
+
+    数组中括号 对象大括号
+
+</head>
+
+<body>
+    <script>
+        const user = {
+            name: 'qja',
+            age: 18
+        }
+        const { uoname, uage } = user;  // 这里解构的变量名用了name和age了 其他解构变量名不能再次使用
+        console.log(user);  // 返回对象user{}
+        // 等价于
+        const { username, userage } = { username: 'qjaa', userage: 118 }   // 批量声明变量同时依次赋值  
+        // 注意 变量名与属性名必须相同 同时解构的变量名不要与外部的变量名冲突
+        console.log({ username, userage });  // 返回对象{ }
+
+        // 对象解构的变量名可以重新命名 以避免命名冲突的问题
+        const { name: a, address } = { name: 'qj7', address: 'js' }
+        console.log({ a, address });  // 旧变量名: 新变量名  调用的是新变量名  这里的冒号表示 “ 什么值：赋值给谁 ” 即name赋值给a
+
+
+
+        // 数组对象的解构
+        const code = [{ lan: 'js', rd: 3 }];
+        const [{ lan, rd: num }] = code;
+        console.log(lan);   //  js
+        console.log(num);   //  3
+
+        // 多级对象解构
+        const pig = { name: '佩奇', family: { mother: 'm', father: 'f', sister: 's' }, age: 6 }
+        const { name, family: { mother, father, sister }, age } = pig;
+        console.log(pig);  // 返回多级对象{}
+        console.log(name);  // 佩奇
+
+
+        // 这是一组后台传来的数据
+        const msg = {
+            "code": 200,
+            "msg": "获取新闻列表成功",
+            "data": [
+                {
+                    "id": 1,
+                    "title": "ChatGPT-4",
+                    "count": 58
+                },
+                {
+                    "id": 2,
+                    "title": "Google",
+                    "count": 56
+                },
+                {
+                    "id": 3,
+                    "title": "俄乌冲突",
+                    "count": 1669
+                },
+
+            ]
+        }
+
+        // 需求1 将msg对象 采用对象解构的方式 只选出data用来渲染页面
+        // const { data } = msg;
+        // console.log(data);
+
+        // ！！ 需求2 选出data作为参数传递给函数
+        function render({ data }) {  // msg作为实参传入的时候 顺手就把它解构了
+            console.log(data);
+        }
+        render(msg)
+
+        // 需求3 为防止msg里的data变量名冲突 要求渲染函数里的数据名改为 myData
+        function render({ data: myData }) {  // 使用新变量名
+            console.log(myData);
+        }
+        render(msg)
+    </script>
+</body>
+
+</html>

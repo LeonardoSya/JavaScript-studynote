@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    object.toLocalString()函数用于 将当前对象以字符串值的形式返回 该字符串的格式适合当前宿主环境的当前区域设置
+    由于所有对象都继承了Object的对象实例 因此几乎所有实例对象都可以使用该方法 此方法返回结果为String类型
+
+    1. 当Object为数组对象Array时 则将每个数组元素转换为字符串 并且将这些字符串之间以指定的分隔符拼接起来后返回 分隔符由当前宿主环境的当前区域设置决定
+    2. 当object为时间/日期对象(Time/Date)时 返回一个以当前区域设置的长默认格式编写的日期字符串
+    3. 当object为数字(Number)时 产生一个表示该Number值的函数
+
+    toString()和toLocalString()区别
+    toString()获取String(传统字符串)  而toLocalString()获取的是LocaleString(本地环境字符串)
+    如果你开发的脚本在世界范围都有人使用  那么将对象转换成字符串时请使用toString()
+    toLocalString()会根据你机器的本地环境来返回字符串 它的返回值在不同本地环境下使用的符号会有微妙的变化
+    若是在后台处理字符串 请务必使用toString()
+</head>
+
+<body>
+    <script>
+        // 1. 当object为Array时
+        const arr = [1, 2, 3, 4]
+        console.log(arr.toLocaleString());  //  1, 2, 3, 4
+
+        // 2. 当object为time/date
+        console.log(new Date().toLocaleString());  // 2023/4/5 12:23:30
+        console.log(new Date().toLocaleDateString());  // 2023/4/5
+        console.log(new Date().toLocaleTimeString());  // 12:24:16
+
+        // 3. 当object为number
+        const num = 12345678
+        console.log(num.toLocaleString());   // 12,345,678
+    </script>
+</body>
+
+</html>

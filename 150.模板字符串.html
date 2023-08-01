@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    模板字面量是允许嵌入表达式的字符串字面量
+</head>
+
+<body>
+    <script>
+        const a = 5, b = 10
+        console.log(`Fifteen is ${a + b} and not ${2 * a + b}.`);
+
+
+        // 如果我们在调用一个函数的时候不使用()调用  并且传入其他变量
+        function foo(...args) {
+            console.log(args);
+        }
+        const name = 'aaa'
+        const age = 18
+        // 下面这行同样可以调用函数 函数可以获取到参数  
+        foo`Hello ${name} World ${age}`    // [Array(3), 'aaa', 18]
+         // 第一个元素是数组 是被模板字符串拆分的字符串组合 后面的元素是一个个模板字符串传入的内容
+    </script>
+</body>
+
+</html>

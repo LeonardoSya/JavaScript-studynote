@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let computer = {
+            color: 'pink',
+            weight: '100g',
+            brand: 'HUAWEI',
+            function: function () {
+                console.log('watch a film');
+                console.log('play games');
+                console.log('program');
+            }
+        }
+        for (const key in computer) {
+            console.log(computer[key]);
+        }
+        computer.function();
+
+
+        let btn = new Object();
+        btn.width = '10px';
+        btn.height = '15px';
+        btn.click = function () {
+            console.log('Dont click me');
+        }
+        console.log(btn['width']);
+        console.log(btn.height);
+        for (const key in btn) {
+            console.log(btn[key]);
+        }
+
+        function Car(weight, color, brand) {
+            this.weight = weight;
+            this.color = color;
+            this.brand = brand;
+            this.function = function (fun) {
+                alert(fun);
+            }
+        }
+        let car = new Car('2000kg', 'black', 'BMW');
+        car.function('fly');
+        console.log(car);
+        for (const key in car) {
+            console.log(car[key]);
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

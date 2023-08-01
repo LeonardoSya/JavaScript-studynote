@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    js解析器在运行代码的时候分为两步: 预解析和代码执行
+    预解析: js引擎会把所有var和function 提升到当前作用域的最前面
+    预解析分为 变量提升和函数提升
+    变量提升: 只把所有变量声明 提升到当前作用域最前面   但是不提升赋值
+    <script>
+        // 变量提升
+        console.log(num);   // undefined   因为var提升num到作用域最前面 但是 = 10不提升 只输出num 值未被调用 结果是undefined
+        var num = 10;  
+
+        name();
+        var name = function() {
+            console.log(22);
+        }  // 报错  执行顺序 var name;  name();  name()=function...
+
+
+        // 函数提升 但是匿名函数不可以
+        function fn() {
+
+        }
+        fn();  // 这里fn（）在function前后都无所谓 因为function自动提升到当前作用域最前面
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

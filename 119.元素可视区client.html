@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    client 客户端
+    我们使用client相关属性获取元素可视区的相关信息 通过client相关属性可以动态的得到该元素的边框大小、元素大小
+    element.clientTop  返回元素上边框大小
+    element.clientLeft 返回元素左边框大小
+    // 下面两种较常用
+    element.clientWidth 返回自身包括padding、内容区 的宽度, 不包含border 返回值不带单位
+    element.clientHeight 返回自身包括padding、内容区 的高度, 不包含border 返回值不带单位
+
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: #00aeef;
+            border: 10px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        // clientWidth 和 offsetWidth 的唯一区别是 不包含border    要返回边框需要用clientTop和clientLeft
+        let div = document.querySelector('div');
+        console.log(div.clientWidth);  // 200 (不包含border)
+    </script>
+</body>
+
+</html>

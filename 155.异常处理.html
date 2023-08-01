@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    异常处理: 异常处理是指 预估代码执行过程中可能发生的错误 然后最大程度的避免错误的发生导致整个程序无法继续运行
+
+    throw 抛异常 关键字是throw 会终止程序 通常 throw 和 new Error 配合使用
+    try/catch 捕获异常 捕获浏览器提供的错误信息
+    debugger 和打断点作用一致 在代码里面写 方便程序员调试
+
+    了解js中程序异常处理的方法 提升代码运行的健壮性
+</head>
+
+<body>
+    <div>123</div>
+    <script>
+        // function counter(x, y) {
+        //     if (!x || !y) {
+        //         // throw"参数不能为空"
+        //         throw new Error('参数不能为空!')
+        //     }
+        //     return x + y
+        // }
+        // counter()   //  它会这样报错:  155.异常处理.html: 21 Uncaught Error: 参数不能为空!
+
+
+        function fn() {
+            try {
+                // 可能发生错误的代码写到 try 里面
+                const div = document.querySelector('.div')  // 故意多写一个 .
+                div.style.color = 'red'
+            } catch (error) {  // error是形参 里面会被传入浏览器提供的错误信息
+                console.log(error.message);   //   Cannot read properties of null (reading 'style') 是黑字而不是红字
+                // return  如果需要中断程序的话 就在此处写return
+                // throw new Error('错了吧')  // 当然 trycatch 也可以和throw搭配使用
+            } finally {
+                //  finally{} 不管程序是否错误 都会执行代码
+                alert('404 NOT FOUND')
+            }
+            console.log(1);  // 仍能打印
+            // 说明 trycatch 拦截错误，提示浏览器提供的错误信息，但是不会中断程序的执行  （throw会自动中断）
+        }
+        fn()
+
+    </script>
+</body>
+
+</html>

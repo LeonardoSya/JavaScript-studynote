@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var num = 10;
+        fun();
+        function fun() {
+            console.log(num);
+            var num = 20;
+        }
+        // 相当于执行了以下代码
+        var num;
+        function fun() {
+            var num;
+            console.log(num);  // 输出undefined
+            num = 20;
+        }
+        num = 10;
+        fun();
+
+
+        var num = 10;
+        function fn() {
+            console.log(num);
+            var num = 20;
+            console.log(num);
+        }
+        fn();
+        // 相当于执行以下代码
+        var num;
+        function fn() {
+            var num;
+            console.log(num);  // undefined
+            num = 20;
+            console.log(num);  // 20
+        }
+        num = 10;
+        fn();
+
+
+        var a = 18;
+        f1();
+        function f1() {
+            var b = 9;
+            console.log(a);
+            console.log(b);
+            var a = '23'
+        }
+        // 相当于执行以下代码
+        var a;
+        function f1() {
+            var b;
+            var a;
+            b = 9;
+            console.log(a);   // undefined
+            console.log(b);   // 9
+            a = '23';
+        }
+        a = 18;
+        f1();
+
+
+        f1();
+        console.log(c);
+        console.log(b);
+        console.log(a);
+        function f1() {
+            var a = b = c = 9;
+            console.log(a);
+            console.log(b);
+            console.log(c);
+        }
+        // 相当于执行以下代码
+        function f1() {
+            var a;
+            a = b = c = 9;  // 当函数内部 变量未声明只赋值 当作全局变量看 因此b c 是全局变量   而a声明过了 因此a仍然是局部变量
+            console.log(a);  // 9
+            console.log(b);  // 9
+            console.log(c);  // 9
+        }
+        f1();
+        console.log(c);  // 9
+        console.log(b);  // 9
+        console.log(a);  // 报错    a是局部变量 函数外无法调用
+        
+        // 变量未赋值或没有返回值 undefined   不存在的变量被引用 会报错is not undefined
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

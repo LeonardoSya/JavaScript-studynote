@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    点击按钮之后 动态创建一个li添加到ul里面
+    创建li的同时 把文本域里面的值通过li.innerHTML赋值给li
+    新的留言在前面显示 用insertBefore
+</head>
+
+<body>
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+    <button id="btn1">发布</button>
+    <button id="btn2">删除评论</button>
+    <ul>
+        <li>123<a href="javascript:;">删除</a></li>
+    </ul>
+
+    <script>
+        let btn1 = document.querySelector('#btn1');
+        let btn2 = document.querySelector('#btn2');
+        let text = document.querySelector('textarea');
+        let ul = document.querySelector('ul');
+        btn1.onclick = function () {
+            if (text.value == '') {
+                alert('宁输入的内容为空');
+            } else {
+                // 创建元素 赋值 添加元素
+                let newLi = document.createElement('li');
+                // href='javascript:;'  阻止链接跳转
+                newLi.innerHTML = text.value + "<a href='javascript:;'>删除</a>";
+                ul.insertBefore(newLi, ul.children[0]);
+                text.value = '';
+                btn2.disabled = false;
+
+                // 删除元素 
+                let del = document.querySelectorAll('a');
+                for (let index = 0; index < del.length; index++) {
+                    del[index].onclick = function () {    // 删除的是当前链接的li 是当前a所在的li（a的父亲）  所以this.parentNode
+                        ul.removeChild(this.parentNode);
+                    }
+                }
+            }
+        }
+        btn2.onclick = function () {
+            if (ul.children.length == 0) {
+                this.disabled = true;
+            } else {
+                ul.removeChild(ul.children[0]);
+            }
+
+        }
+
+    </script>
+</body>
+
+</html>

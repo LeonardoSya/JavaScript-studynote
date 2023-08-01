@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    dom在实际开发中主要用来操作元素 那我们如何来获取页面中的元素呢
+    根据id获取、根据标签名获取、通过h5新增方法获取、特殊元素获取
+
+    1. document.getElementById()返回一个匹配特定ID的元素。由于元素的 ID 在大部分情况下要求是独一无二的，这个方法自然而然地成为了一个高效查找特定元素的方法。
+    2. document.getElementById() 或 element.getElementsByTagName()方法 返回一个动态的包含所有指定标签名的元素的 HTML 集合 后者指定的元素的子树会被搜索，不包括元素自己
+    3. document(或其他元素).getElementsByClassName() 根据类名返回元素对象集合
+    4. document.querySelector('选择器') 根据指定选择器返回第一个元素对象
+    5. document.querySelectorAll('选择器') 相比于上一个 它根据指定选择器返回所有元素
+    6. 获取body标签 document.body 返回body的元素对象
+    7. 获取html标签 document.documentElement 返回html的元素对象
+</head>
+
+<body>
+    <!-- 1. -->
+    <div id="time">9:00</div>
+    <!-- 因为文档页面从上往下加载 所以script写到标签下面 -->
+    <ul>
+        <li>111</li>
+        <li>222</li>
+        <li>333</li>
+        <li>444</li>
+        <li>555</li>
+    </ul>
+    <!-- 2. -->
+    <ol>
+        <li>99</li>
+        <li>88</li>
+        <li>77</li>
+    </ol>
+    <!-- 3. -->
+    <div id="parent-id">
+        <p>hello world1</p>
+        <p class="test1">hello world2</p>
+        <p class="test2">hello world3</p>
+        <p>hello world4</p>
+    </div>
+    <!-- 4.  5. -->
+    <div class="box">67890000</div>
+    <div class="box">678911111</div>
+    <div id="box">6789222222</div>
+    <span>6789444</span>
+
+    <script>
+
+        //1. 根据ID获取元素  ducument.getElementById()
+
+        let thisTime = document.getElementById('time');   // id对大小写敏感 且必须是字符串
+        console.log(thisTime);  // 返回 <div id="time">9:00</div>  这是一个DOM element object
+        // 返回值 是一个匹配到id的 DOM Element object (元素对象)
+        console.log(typeof thisTime);  // 返回 object
+
+        // console.dir 打印返回的元素对象以及所有的属性和方法
+        console.dir(thisTime);  // 返回 div#time 包含了许多的属性和方法
+
+
+
+        // 2. 根据标签名获取元素 document.getElementsByTagName()
+        let theseLis = document.getElementsByTagName('li');
+        console.log(theseLis);  // 返回 HTMLCollection(5) [li, li, li, li, li]  (伪数组)
+        // 返回值是 获取而来的元素对象的集合 以伪数组的形式存储(即使只有一个元素对象 而当没有该元素对象时 返回 [] )   (伪数组：有长度、索引号 但是没有push pop等方法)
+
+        // 遍历元素对象 
+        for (let i = 0; i < theseLis.length; i++) {
+            console.log(theseLis[i]);
+        }
+
+        // 返回的列表是动态的，这意味着它会随着 DOM 树的变化自动更新自身。所以，使用相同元素和相同参数时，没有必要多次的调用
+
+        // Element.getElementsByTagName 和 Document.getElementsByTagName()类似，除了它的搜索被限制为指定元素的后代。
+        // 我想只获取第一个ol里的li
+        let thisOl = document.getElementsByTagName('ol');  // ol (伪数组变为单个的父元素)
+        console.log(thisOl[0].getElementsByTagName('li'));  // 返回 HTMLCollection(3) [li, li, li]  (它的搜索被限制为thisOl的后代 不包括thisOl自己) 
+        // 这里要写成thisOl[0]是因为 父元素必须是单个对象(必须被指明是哪一个元素的对象)
+        // 当然 这样做比较麻烦 直接给ol指定一个id也可以
+
+
+        // 3. document(或其他元素).getElementsByClassName() 根据类名返回元素对象集合
+        let test = document.getElementsByClassName('test1'); // 这是匹配类名的元素集合 不是元素本身  返回 HTMLCollection [p.test]
+        let testTarget = document.getElementsByClassName('test1')[0];  // 我们想要取到的第一个元素 这样写才会返回 <p class="test">hello world2</p>
+
+        document.getElementsByClassName('test red');  // 获取所有 class 同时包括 'red' 和 'test' 的元素。 类名通过空格分隔
+        console.log(document.getElementById('parent-id').getElementsByClassName('test1')[0]);  // 在id为'parent-id'的元素的子节点中 获取所有class为'test1'的元素
+
+
+        // 4. document.querySelector 返回指定选择器的 第一个元素对象    并且前面加 .(选择class) 或 #(选择id) 或不加(选择标签)
+        console.log(document.querySelector('.box'));
+        console.log(document.querySelector('#box'));
+        console.log(document.querySelector('span'));
+
+
+        // 5. document.querySelectorAll('选择器') 相比于上一个 它根据指定选择器返回所有元素
+        console.log(document.querySelectorAll('.box'));  // 等价于getElementsByClassName()
+
+        // 6. 获取body 
+        console.log(document.body);
+
+        // 7. 获取html
+        console.log(document.documentElement);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    每个原型对象prototype都有内置的constructor属性(constructor构造函数)
+    作用: 该属性指向该原型对象的构造函数 简单理解就是指向该原型对象的父级——构造函数
+
+    使用场景:
+    如果有多个对象的方法 我们可以给原型对象prototype采取对象形式赋值 但这样就会覆盖prototype里原本的内容 修改后的prototype里的constructor不再指向当前构造函数
+    此时 我们需要在修改后的prototype里 添加一个 constructor: Object 指回原来的构造函数
+</head>
+
+<body>
+    <script>
+        function Person() {
+
+        }
+        const zyy = new Person()
+        console.log(Person.prototype);   //  Object{constructor: ƒ} 说明原型对象内部默认内置了constructor指向构造函数
+        console.log(Person.prototype.constructor);  // 返回 f Person(){ }
+        console.log(Person.prototype.constructor === Person);  // true
+
+
+        // constructor应用
+        function Lan() {
+
+        }
+        console.log(Lan.prototype);  // {constructor:f}
+        Lan.prototype = {
+            frontEnd: () => { console.log('前端'); },
+            backEnd: () => { console.log('后端'); },
+        }
+        console.log(Lan.prototype);  // 返回object{f, f} 但是没有constructor了 说明已经分不清这个原型对象属于哪个一个构造函数了(找不到父级)
+        console.log(Lan.prototype.constructor === Lan);   // false  说明指不回去了
+
+        // 因此 在prototype对象里加一堆方法是可以的 但是要重新指回创造这个原型对象的构造函数
+        // 写法: 
+        Lan.prototype = {
+            constructor: Lan,
+            frontEnd: () => { console.log('前端'); },
+            backEnd: () => { console.log('后端'); },
+        }
+        console.log(Lan.prototype);  // Object{constructor:f, frontEnd:f, backEnd:f}
+        console.log(Lan.prototype.constructor === Lan);   // true  prototype重新指回了构造函数
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    forEach()方法用于调用数组的每个元素 并将元素传递给回调函数
+    主要场景: 遍历数组
+</head>
+
+<body>
+    <script>
+        const arr = [1, 2, 3];
+        arr.forEach(function (item, index) {   // 当前数组元素item必写 index索引号可选
+            console.log([item, index]);  // [1,0] [2,1] [3,2]   [元素, 索引号]
+        })  // 不需要return 因为没有返回指针
+    </script>
+</body>
+
+</html>

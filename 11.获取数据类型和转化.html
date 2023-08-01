@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 获取/检测变量数据类型  typeof
+        var num = 10;
+        console.log(typeof num); // 结果显示number
+        var str = 'pink';
+        console.log(typeof str); // 结果显示string
+        var timer = null;
+        console.log(typeof timer); // 结果显示 object 对象
+
+        var age = prompt('请输入年龄');
+        console.log(typeof age); // 显示string 
+        // 说明promot 取过来的值是字符型
+
+
+        // 数据类型的转换
+        // 使用表单、prompt获取过来的数据默认是字符串类型的 不能直接进行加法运算 需要转换变量的数据类型
+
+        // 1.转换为字符串
+        var num = 10;
+        console.log(num + '');  // 隐式转换
+
+        // 2.转换为数字型 用parseInt/parseFloat (变量)
+        parselnt(string);// 转化为整数数值型
+        parseFloat(string);// 转化为浮点数数值型
+
+        var age = prompt('请输入年龄');
+        console.log(parseInt(age)); //数字型
+        console.log(parseInt(3.14)); 输出为3 | 取整
+        console.log(parseInt(3.94)); 输出为3 | 向下取整
+        console.log(parseInt('120px')); 输出为120 | 去掉单位
+
+        console.log(parseFloat(3.14)); 输出为3.14
+        console.log(parseFloat('120px')); 输出为120 | 去掉单位
+
+            - * /  非加号以外都能利用算术运算隐式转换为数值型
+        console.log('12' - 0); 输出为12
+        console.log('12' - '11'); 输出为1
+        console.log('12' * 1); 输出为12
+
+        // 3.转换为布尔型
+        代表空 | 否定的值转换为false 如'' 0 NaN null undefined
+        其余为true
+        console.log(Boolean('小白'));  // true
+        console.log(Boolean(NaN));  // false
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

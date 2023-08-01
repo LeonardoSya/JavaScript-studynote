@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function fn1() {
+            console.log(1);
+            fn2();  // 调用函数需要加后面的小括号
+            console.log('fn1');
+        }
+        function fn2() {
+            console.log(2);
+            console.log('fn2');
+        }
+        fn1();
+        // 1 2 fn2 fn1
+
+
+        //判断某年二月有多少天 平年28闰年29
+        function fn2(month) {
+            let year = prompt('哪一年呢');
+            if (fn(year)) {   // 这里if()里的值是 fn的返回值result == true  这里的fn(year)是实参
+                alert('29');
+            } else {
+                alert('28');
+            }
+        }
+        fn2();
+
+        function fn(year) {  // 这里的fn(year)是上面那个fn(year)的形参
+            let result = false;
+            if (year % 4 == 0 && year % 100 !== 0 || year % 400 == 0) {
+                result = true;
+            }
+            return result;
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    立即执行函数: 不需要调用, 立马就能够自己执行的函数
+    (function () {})() 或 (function () {} ()) 第二个()可以看作调用函数
+    作用: 创建一个独立的作用域 里面的变量都是局部变量 避免了命名冲突问题
+
+    pageshow事件
+    a标签的超链接、F5或刷新按钮、前进后退按钮 这三种情况都会触发 load 事件
+    但在火狐中有"往返缓存" 这个缓存保存了页面数据、DOM、JS的状态 实际上将整个页面都保存在了内存里 所以此时后退按钮不能刷新页面
+    此时使用pageshow事件来触发 这个事件在页面显示时触发 无论页面是否来自缓存 在重新加载页面中 pageshow都会在load事件触发后触发 根据事件对象中的persisted来判断是否是缓存中的页面触发pageshow事件
+    注意: pageshow事件 给window添加
+</head>
+
+<body>
+    <script>
+        (function (e) {   // 形参   // （）前函数名是可选的
+            console.log(e);
+        })(1);   // 实参   // 如果有多个立即执行函数要加;
+
+
+        // 淘宝的flexible JS源码   flexible设置了body,html的大小 1rem是多少像素 以及页面大小尺寸变化时重新计算文字大小 
+        (function flexible(window, document) {
+
+            // documentElement 获取html根元素
+            let docEl = document.documentElement;
+            // dpr 物理像素比   pc端物理像素比可能是1 移动端物理像素比是2
+            let dpr = window.devicePixelRatio || 1;  // 如果无法获取当前浏览器dpr就当成1来看
+            // console.log(devicePixelRatio);  // 1.25
+
+            // adjust body font size 设置body的字体大小
+            function setBodyFontSize() {
+                if (document.body) {   // 设置body字体大小
+                    document.body.style.fontSize = (12 * dpr) + 'px';  // 这样在pc端和移动端字体大小会自适应dpr
+                } else {
+                    document.addEventListener('DOMContentLoaded', setBodyFontSize);  // 因为html是从上往下读取的，如果js写在body前面 还没读取body，那么就执行else里的等页面主要DOM元素加载完之后再调用setBodyFontSize()
+                }
+            }
+            setBodyFontSize();
+
+            // set 1rem = viewWidth / 10  设置html元素的文字大小
+            function setRemUnit() {
+                let rem = docEl.clientWidth / 10;   // 把整个屏幕划分成10等分 每一份作为 1rem 的大小  比如在pc端 fontsize: 136.6px , 在移动端 fontsize: 37.5px
+                docEl.style.fontSize = rem + 'px';
+            }
+            setRemUnit();
+
+            // reset rem unit on page resize 当页面尺寸大小发生变化时要重新设置rem的大小
+            window.addEventListener('resize', setRemUnit());  // 当尺寸大小变化再次调用上面的 setRemUnit()
+            // pageshow事件是页面重新加载后触发的事件
+            window.addEventListener('pageshow', function (e) {
+                if (e.persisted) {  // persisted事件判断当前页面是否是来自缓存 如果当前页面来自缓存则返回true
+                    setRemUnit();  // 如果当前页面是从缓存取过来的 也重新计算一下rem的大小
+                }
+            })
+
+            // detect 0.5px supports  有些移动端的浏览器不支持0.5px的写法
+            if (dpr >= 2) {
+                let fakeBody = document.createElement('body');
+                let testElement = document.createElement('div');
+                testElement.style.border = '.5px solid transparent';
+                fakeBody.appendChild(testElement);
+                docEl.appendChild(fakeBody);
+                if (testElement.offsetHeight === 1) {
+                    docEl.classList.add('hairlines');
+                }
+                docEl.removeChild(fakeBody);
+            }
+
+
+        }(window, document));
+    </script>
+</body>
+
+</html>

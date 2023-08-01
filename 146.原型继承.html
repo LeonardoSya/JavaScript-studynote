@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    继承是面向对象编程的一大特征 通过继承进一步提升代码封装的程度 js中大多数是借助原型对象实现继承的特性
+    原型继承:   子类.原型 = new 父类()
+</head>
+
+<body>
+    <script>
+        // const Person = {
+        //     eyes: 2,
+        //     ears: 2,
+        //     head: 1,
+        // }
+        function Person() {
+            this.eyes = 2
+            this.ears = 2
+            this.head = 1
+        }
+        function Women() { }
+        function Men() { }
+
+        // Women.prototype = Person  // 把Person里公共的属性方法放到Women的原型对象里 这样一来所有Women的实例对象都能去访问
+        Women.prototype = new Person()
+        Women.prototype.constructor = Women   // 别忘了原型对象指回构造函数
+        // Men.prototype = Person
+        Men.prototype = new Person()
+        Men.prototype.constructor = Men
+
+        const zyy = new Men();
+
+        console.log(Men.prototype.eyes === Person.eyes);  // true
+        console.log(zyy.eyes);  // 2   说明实例对象通过对象原型可以访问创造这个实例对象的构造函数里的原型对象里的属性和方法  即原型继承
+        console.log(Men.prototype);  // Person { , , , constructor}
+        console.log(zyy.__proto__ === Men.prototype);   // true
+
+        Women.prototype.baby = () => { console.log('baby'); }  // 但是Men也能调用baby()因为Men和Women指向同一个对象(构造函数) 这就出现了问题
+        // 因此可以使用构造函数来创建对象 同时把Women.prototype = Person 换成Women.prototype = new Person()
+        // 这样两个对象结构一样 但是它们之间不关联了
+    </script>
+</body>
+
+</html>

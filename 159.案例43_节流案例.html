@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="never" />
+    <title>综合案例</title>
+    视频播放事件:
+    ontimeupdate 在视频/音频(audio/video)当前的播放位置发生改变时触发
+    onloadeddata 在当前帧的数据加载完成还没有足够的数据播放视频/音频(audio/video)的下一帧时触发
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 1200px;
+            margin: 0 auto;
+        }
+
+        .video video {
+            width: 100%;
+            padding: 20px 0;
+        }
+
+        .elevator {
+            position: fixed;
+            top: 280px;
+            right: 20px;
+            z-index: 999;
+            background: #fff;
+            border: 1px solid #e4e4e4;
+            width: 60px;
+        }
+
+        .elevator a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            text-align: center;
+            color: #999;
+        }
+
+        .elevator a.active {
+            color: #1286ff;
+        }
+
+        .outline {
+            padding-bottom: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="http://pip.itcast.cn">
+                <img src="https://pip.itcast.cn/img/logo_v3.29b9ba72.png" alt="" />
+            </a>
+        </div>
+        <div class="video">
+            <video src="https://v.itheima.net/LapADhV6.mp4" controls></video>
+        </div>
+        <div class="elevator">
+            <a href="javascript:;" data-ref="video">视频介绍</a>
+            <a href="javascript:;" data-ref="intro">课程简介</a>
+            <a href="javascript:;" data-ref="outline">评论列表</a>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <script src="153.lodash.min.js"></script>
+
+
+    <script>
+        // ontimeupdate audio\video当前播放位置发生改变时触发  
+
+
+        const video = document.querySelector('video')
+        // 在ontimeupdate事件触发的时候 每隔1秒钟 就记录当前时间存储到本地存储
+        video.ontimeupdate = _.throttle(() => {
+            // 获得当前时间 video.currenntTime
+            localStorage.setItem('currentTime', video.currentTime)  // 把当前的时间存到本地存储
+        }, 1000)
+        // 打开页面触发onloadeddata触发 就可以从本地存储取出时间 让视频从取出的时间播放 如果没有则默认为0s
+        video.onloadeddata = () => {
+            video.currentTime = localStorage.getItem('currentTime') || 0  //  逻辑中断: 如果没有前面的current则为假 取后面的0
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    我们可以通过js修改元素的大小、颜色、位置等样式
+    element.style 行内样式操作 如果样式比较少、功能简单用这个代码
+    element.className 类名样式操作 其实就等于修改class 但class是保留字所以用className className会覆盖原有类名 如果样式比较多就用这个代码
+    如果想要保留原来的类名(假设原类名是old) 就写 this.className = 'old change' (多类名选择器)
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: #00afef98;
+        }
+
+        span {
+            display: inline-block;
+            width: 400px;
+            height: 400px;
+            background-color: red;
+        }
+
+        .change {
+            background-color: rgba(200, 136, 136, 0.82);
+            width: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <span></span>
+    <div style="margin-top: 100px;" id="div2"></div>
+    <script>
+        let div = document.querySelector('div');
+        div.onclick = function () {
+            this.style.backgroundColor = 'purple';  // 属性采取驼峰命名法
+            this.style.width = '300px';
+            // js修改style样式操作 产生的是行内样式 权重比内嵌样式高
+        }
+
+        let span = document.querySelector('span');
+        span.onmouseover = function () {
+            // this.style.display = 'none';
+        }
+
+        let div2 = document.getElementById('div2');
+        div2.onclick = function () {
+            this.className = 'change';  // 让当前元素的类名改为span  相当于在div行内写了class = change
+        }
+
+    </script>
+</body>
+
+</html>

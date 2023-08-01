@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var line = prompt('请输入最底层有几颗星(奇数）');
+        while (line % 2 == 0) {
+            alert(line + '不是一个奇数哦');
+            line = prompt('请重新输入最底层有几颗星(奇数）');
+        }
+
+        line = 2 * line - 1;
+        var str = '';
+        for (var i = 1; i <= line; i += 2) {
+            for (var j = 1; j <= (line - i) / 2; j++) {
+                str += ' '
+            }
+            for (var h = 1; h <= i; h += 2) {
+                str += '星'
+            }
+            str += '\n'
+        }
+        console.log(str);
+        // 成功的
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

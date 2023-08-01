@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    问题如下
+    字符串长度
+    取出指定位置字符 如0,3,5
+    查找指定字符是否在以上字符串中存在 如i,c,b
+    替换指定字符 g替换为22 ss替换为b
+    截取指定开始位置到结束位置(1-5)的字符串
+    找出以上字符串中出现次数最多的字符和出现的次数
+    <script>
+        let str = 'abaasdffggghhjjkkgfddsssss3444343';
+        // 长度
+        console.log(str.length);
+        // 取出指定位置字符 如0,3,5
+        console.log(str.charAt(0), str.charAt(5), str[7]);
+        // 查找i是否在以上字符串中存在, 查找a是否在索引号10之后存在
+        console.log(str.indexOf('i'), str.indexOf('a', 10));
+        // 替换指定字符 g替换为22
+        console.log(str.replace('g', '22'));
+        // 截取指定开始位置到结束位置(1-5)的字符串
+        console.log(str.substring(2, 5));
+        // 找出以上字符串中出现次数最多的字符和出现的次数
+        // 遍历字符串并把每个字符都存储给对象 计数 遍历对象得到最大值和该字符
+        let obj = {},
+            maxNum = 0,
+            maxStr = '';
+        for (let i = 0; i < str.length; i++) {
+            if (obj[str[i]] != undefined) {
+                obj[str[i]]++;
+            } else {
+                obj[str[i]] = 1;
+            }
+        }
+        for (const key in obj) {
+            if (obj[key] > maxNum) {
+                maxNum = obj[key];
+                maxStr = key;
+            }
+        }
+        console.log(maxNum, maxStr);
+
+    </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>

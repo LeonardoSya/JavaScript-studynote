@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基本包装类型</title>
+    简单数据类型(基本数据类型): 在变量中存储的是值本身 因此叫值类型    复杂数据类型: 在存储时变量中存储的仅仅是地址(引用) 因此叫引用类型 通过new关键字创建的对象如Object, Array, Date等
+    对象才有属性和方法 复杂数据类型才有数据
+
+    所以 为什么简单数据类型会有length属性呢?
+    基本包装类型: 就是把简单数据类型 包装成复杂数据类型  这样基本数据类型就有了属性和方法
+
+    为方便操作基本数据类型 js还提供了三个特殊的引用类型: String, Boolean, Number
+    <script>
+        let str = 'andy';
+        console.log(str.length);
+        // 这里看上去只写了两行代码 但在js底层 它其实是这样的逻辑 :
+        
+        // 1. 把简单数据类型包装成复杂数据类型
+        let temp = new String('andy');
+        // 2. 把temp的值给str
+        str = temp;
+        // 3. 销毁temp
+        temp = null;
+        // 因此简单数据类型有length等属性
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

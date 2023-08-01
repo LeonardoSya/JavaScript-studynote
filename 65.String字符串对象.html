@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字符串对象</title>
+    字符串的所有方法 都不会修改字符串本身(字符串不可变) 操作完成会返回一个新字符串
+
+    索引
+    indexOf() 根据字符返回位置
+    charAt(index) 返回指定位置的字符
+    charCodeAt(index) 获取指定位置处字符的ASCII码
+    str[index] 获取指定位置处字符 (需考虑兼容性)
+    concat(str1, str2, str3...) 拼接字符串(同数组) 和str + str1 相同 +更常用
+    (！重点)substring(start, end)    [start,end)(不接受负值)   根据索引号进行字符串截取
+    (! 重点)startsWith(检测字符串[, 索引号])   检测是否以某字符开头
+    replace('被替换的字符', '替换为的字符') 替换字符 只替换第一个
+    (! 重点)split('分隔符') 字符串转换为数组 join数组转换为字符串
+    toUpperCase() 转换大写
+    toLowerCase() 转换小写
+    (! 重点)includes() 方法执行区分大小写的搜索，以确定是否可以在另一个字符串中找到一个字符串，并根据情况返回 true 或 false。
+    match() 查找字符串
+    <script>
+        // 1. indexOf('要查找的字符', [起始的位置])   根据字符返回位置
+        let str = 'abcdefga';
+        console.log(str.indexOf('a', 1));  // 1 代表从索引号1开始查找 因此返回值是7
+        // 案例 查找所有'o'出现的位置及次数
+        let str1 = 'sadpovtoregoqwoovo';
+        let i = 0,
+            arr = [],
+            num = 0;
+        while (i !== -1) {
+            arr.push(i);
+            i = str1.indexOf('o', i + 1);
+            num++;
+        }
+        console.log(arr, num + '次');
+
+
+        // 2. 根据位置返回字符
+        let str2 = 'sadpovo';
+        console.log(str2.charAt(3));  // p
+        console.log(str2[3]);  // p
+        // 案例 遍历字符串
+        for (let j = 0; j < str2.length; j++) {
+            console.log(str2.charAt(i));
+        }
+        console.log(str2.charCodeAt(1));  // 返回a的ASCII码 97
+
+        // 案例 判断str3中出现最多的字符 并统计其个数
+        let str3 = 'saddpovvtoressgoqwoovos',
+            maxNum = 0,
+            maxStr = '';
+        let obj = {}
+        for (let index = 0; index < str3.length; index++) {
+            if (obj[str3[index]] != undefined) {
+                obj[str3[index]]++;
+            } else {
+                obj[str3[index]] = 1;
+            }
+        }
+        for (const key in obj) {
+            if (obj[key] > maxNum) {
+                maxNum = obj[key]
+                maxStr = key;  // key是局部变量
+            }
+        }
+        console.log(maxStr, maxNum);  // o  6 
+
+
+        // 3. concat 或 + 拼接字符串
+        console.log(str.concat(str1));
+        console.log(str + str1);
+
+        // 4. replace替换字符 只替换第一个
+        let str4 = 'andyandy';
+        console.log(str4.replace('a', 'b')); // bndyandy
+        // 案例 替换所有o为a
+        let str5 = 'saddpwoovos';
+        // while (str5.indexOf('o') !== -1) {
+        //     str5.replace('o', 'a');
+        // }
+        // console.log(str5);
+
+
+        // 5. split 字符转换为数组   join 数组转换为字符串
+        let str6 = 'pink, blue, red';
+        console.log(str6.split('')); //  ['p', 'i', 'n', 'k', ',', ' ', 'b', 'l', 'u', 'e', ',', ' ', 'r', 'e', 'd']
+        console.log(str6.split('&')); //  ['pink, blue, red']
+
+
+        // 6. includes() 方法执行区分大小写的搜索，以确定是否可以在另一个字符串中找到一个字符串，并根据情况返回 true 或 false
+        const sentence = 'The quick brown fox jumps over the lazy dog.';
+        const word = 'fox';
+        console.log(`The word "${word}" ${sentence.includes(word) ? 'is' : 'is not'} in the sentence`); // "The word "fox" is in the sentence"
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

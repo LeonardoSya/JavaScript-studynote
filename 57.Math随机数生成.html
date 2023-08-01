@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    Math对象随机数方法     random() 返回一个随机浮点数  x属于 [0, 1)
+    此方法不跟参数
+
+    <script>
+        console.log(Math.random());  // 返回值 [0, 1)
+
+        // 1.返回一个[0, 任意数）之间的整数
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * max);   // 封装一个 返回值 [0, max)且为整数 的函数
+        }
+        console.log(getRandomInt(5));  // 返回 0/1/2/3/4
+
+        // 2.返回一个两个数之间的随机整数(包括这两个数)
+        function getRandomIntInclusive(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min;  
+        }
+        console.log(getRandomIntInclusive(1, 10));
+
+        // 3.返回一个数组里的随机元素
+        function getRandomArrElement(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+        console.log(getRandomArrElement(arr = ['LeonardoSya', 'qja', 'qj777a', '栖夜']));
+    
+        // 4.数字炸弹
+        function getRandom(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min)
+        }
+        let guess = prompt('Bulls and Cows');
+        let random = getRandom(1, 100);
+        while (true) {
+            if (guess < random) {
+                guess = prompt('太小啦 请重新输入');
+            } else if (guess > random) {
+                guess = prompt('太大啦 请重新输入');
+            } else {
+                break;
+            }
+        }
+        alert('恭喜');
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

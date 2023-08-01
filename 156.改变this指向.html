@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    this指向可以用 call() apply() bind() 更改
+
+    fun.apply(thisArg, [argsArray])
+    thisArg: 在fun函数运行时指定的 this 值
+    argsArray: 传递的值 必须包含在 数组 里面
+    返回值就是函数的返回值 因为它就是调用函数
+    因此 apply 主要跟数组有关系, 比如使用 Math.max() 求数组的最大值\
+
+
+    fun.bind(thisArg, arg1, arg2, ...)
+    bind()方法不会调用函数 但能改变函数内部this指向
+    thisArg: 在fun运行时指定的this值
+    arg1, arg2: 传递的其他参数
+    返回由指定的this值和初始化参数改造的 原函数拷贝(新函数)
+    因此 当我们只想改变this指向 又不想去调用这个函数时 就用bind() 比如改变定时器内部的this指向
+
+    bind和apply的区别是 bind不会自己调用函数 apply返回函数的返回值 bind返回新函数(但这个新函数里面的this是改过的)
+
+</head>
+
+<body>
+    <button>send</button>
+    <script>
+        // apply()
+        const obj = {
+            age: 18
+        }
+        function fn(x, ...args) {
+            console.log(this);  // 原本是window  fn.apply(obj) 后指向obj
+            console.log(x, ...args);  // 1, 2
+        }
+        fn.apply(obj, [1, 2])   //  它的返回值就是函数的返回值
+
+        // apply 的求和函数
+        function sum(x, y) {
+            return x + y
+        }
+        const result = sum.apply(null, [1, 2])
+        console.log(result);
+
+        // 利用apply 实现Math.max求数组最大值 (Math.max()本来只能求()内若干个数的最大值)
+        const arr = [2, 3, 5, 6]
+        console.log(Math.max.apply(Math, arr));
+        // 当然 利用展开运算符也可以做到
+        console.log(Math.max(...arr));
+
+
+
+        // bind()
+        function sayHi() {
+            console.log(this);
+        }
+        const user = {
+            name: 'qja',
+            age: 18
+        }
+        const sayHello = sayHi.bind(user)  // 调用bind指定this的值
+        sayHello()  // 调用使用bind创建的新函数
+
+        // 需求 有一个按钮 点击就禁用 2秒后再开启
+        document.querySelector('button').addEventListener('click', function () {
+            this.disabled = true
+            setTimeout(function () {
+                this.disabled = false  // 这里原来的this指向window
+            }.bind(this), 1000);  // 这里的this指向btn
+        })
+    </script>
+</body>
+
+</html>

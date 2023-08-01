@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 页面被卷去的头部: window.pageYoffset 左侧: window.pageXoffset -->
+
+    <!-- 滚动窗口至文档中的特定位置 window.scroll(x, y) -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            position: relative;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+        .header {
+            height: 200px;
+            background-color: #9a922389;
+        }
+
+        .banner {
+            height: 300px;
+            background-color: #a8292978;
+        }
+
+        .main {
+            background-color: #122fa189;
+            height: 1600px;
+        }
+
+        .btn {
+            position: absolute;
+            /* bottom: 50%; */
+            top: 400px;
+            right: 0;
+            width: 20px;
+            height: 20px;
+            background-color: #fff;
+        }
+
+        .go-back {
+            display: none;
+            width: 10px;
+            height: 10px;
+            background-color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header"></div>
+    <div class="banner"></div>
+    <div class="main"></div>
+    <div class="btn">
+        <div class="go-back"></div>
+    </div>
+
+    <script>
+        let btn = document.querySelector('.btn');
+        let banner = document.querySelector('.banner');
+        let main = document.querySelector('.main');
+        let goBack = document.querySelector('.go-back');
+        let move = btn.offsetTop - banner.offsetTop;
+        // console.log(banner.offsetTop);  // 200
+        document.addEventListener('scroll', function () {
+            if (window.pageYOffset >= banner.offsetTop) {
+                btn.style.position = 'fixed';
+                btn.style.top = move + 'px';
+            } else {
+                btn.style.position = 'absolute';
+                btn.style.top = '400px';
+            }
+            if (window.pageYOffset >= 500) {
+                goBack.style.display = 'block';
+            } else {
+                goBack.style.display = 'none';
+            }
+        })
+        // goBack.addEventListener('click', function () {
+        //     let height = document.documentElement.scrollTop || document.body.scrollTop;
+        //     let timer = setInterval(() => {
+        //         height = -50;
+        //         if (height > 0) {
+        //             window.scroll(0, height);
+        //         } else {
+        //             window.scroll(0, 0);
+        //             clearInterval(timer);
+        //         }
+        //     }, 10);
+        // })
+
+        goBack.addEventListener('click', function () {
+            animate(window, 0, function () {
+                flag = true;
+            })
+        })
+
+        let flag = true;
+        // window.pageYoffset得到页面已滚动的距离  window.scroll(x, y)是滚动事件
+        function animate(obj, target, callback) {
+            if (flag) {
+                flag = false;
+                clearInterval(obj.timer);
+                obj.timer = setInterval(() => {
+                    let step = window.pageYOffset + (target - window.pageYOffset) / 20;
+                    if (window.offsetTop <= 20) {
+                        window.scroll(0, target);
+                    }
+                    if (window.pageYOffset == target) {
+                        clearInterval(obj.timer);
+                        console.log('hello');
+                        callback && callback();
+                    }
+                    // window.scroll(0, Math.sign(step) * Math.ceil(Math.abs(step)));
+                    window.scroll(0, step);
+                }, 10);
+            }
+        }
+
+    </script>
+</body>
+
+</html>

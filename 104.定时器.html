@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定时器</title>
+    setTimeout(回调函数, [延迟的毫秒数]); 注意单位是毫秒
+    该方法用于设置一个定时器 该定时器在定时器到期后执行回调函数 (定时炸弹 一次性)
+    普通函数是按照代码顺序直接调用, 而回调函数需要等待时间 时间到了才去调用这个函数(回调: 回头调用)
+
+    setInterval(func, [delay, arg1, arg2, ...]);
+    该方法重复调用一个函数 每隔这个时间就去调用一次回调函数
+    arg1, ..., argN (可选) 当计时结束的时候，将被传递给 func 函数的附加参数。
+
+    清除定时器clearTimeout(timeout ID) clearInterval(timeout ID)
+
+    <style>
+        .ad {
+            background-color: #00aeefb3;
+            width: 30px;
+            height: 30px;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <button>clearTimeout</button>
+    <div class="ad"></div>
+
+    <script>
+        let time1 = setTimeout(callback, 3000);  // 可以写函数或函数名
+        function callback() {  // callback回调函数
+            console.log('1');
+        }
+        let btn = document.querySelector('button');
+        btn.addEventListener('click', function () {
+            clearTimeout(time1);  // 停止计时器
+        })
+
+        var intervalID = setInterval(myCallback, 500, 'Parameter 1', 'Parameter 2');
+        function myCallback(a, b) {
+            // Parameters are purely optional.
+            console.log(a);
+            console.log(b);
+        }
+
+
+        // 案例
+        let ad = document.querySelector('.ad');
+        let time3 = setTimeout(fn, 2000);
+        function fn() {
+            ad.style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOM浏览器对象模型</title>
+    Brower Object Model 浏览器对象模型
+    它提供独立于内容而与浏览器窗口进行交互的对象 其核心对象是window
+    BOM由一系列相关的对象构成 并且每个对象都提供了很多属性和方法
+
+    对比:
+    dom把文档当作对象 bom把浏览器当作对象
+    dom的顶级对象是document bom的顶级对象是window
+    dom学习操作页面元素 bom学习浏览器窗口交互的一些对象
+
+    window包含:document location navigation screen history
+    window对象是浏览器的顶级对象 它是js访问浏览器的一个接口 同时也是一个全局对象 定义在全局作用域中的变量、函数都自动变成window对象的属性和方法
+
+</head>
+
+<body>
+    <script>
+        window.document.querySelector('div');
+        let num = 10;
+        function fn() {
+            console.log(window.num);  // 完整的应该这么写 window是全局对象
+        }
+        window.fn();  // 可以省略window
+    </script>
+</body>
+
+</html>

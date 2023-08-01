@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>逻辑运算符是用来进行 布尔值运算 的运算符 其返回值也是布尔值 开发中常用于多个条件的判断</title>
+    && 逻辑与 and
+    || 逻辑或 or
+    ! 逻辑非(取反符) not
+    <script>
+        console.log(3 > 5 && 3 > 2);  // false
+        console.log(3 > 5 || 3 > 2);  // true
+        console.log(!true);  // 翻译为：非true   即为false
+
+        var x = 1,
+            y = 2;
+        console.log(!(x > y));  // true
+        console.log(!x > y);    // false
+
+        // 练习
+        var num = 7;
+        var str = '我爱你中国~~';
+        console.log(num > 5 && str.length >= num);  // true
+        console.log(!(num < 10 || str.length == num));  // false
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

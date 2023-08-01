@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th><input type="checkbox" id="all"> </th>
+                <th>商品</th>
+                <th>价格</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+            <tr>
+                <th><input type="checkbox" name="" id=""></th>
+                <th>11</th>
+                <th>11</th>
+            </tr>
+            <tr>
+                <th><input type="checkbox" name="" id=""></th>
+                <th>11</th>
+                <th>11</th>
+            </tr>
+            <tr>
+                <th><input type="checkbox" name="" id=""></th>
+                <th>11</th>
+                <th>11</th>
+            </tr>
+            <tr>
+                <th><input type="checkbox" name="" id=""></th>
+                <th>11</th>
+                <th>11</th>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        let allBox = document.querySelector('#all');
+        let each = document.getElementById('tbody').querySelectorAll('input');
+        allBox.onclick = function () {
+            // if (allBox.checked == true) {
+            //     for (let index = 0; index < each.length; index++) {
+            //         each[index].checked = true;
+            //     }
+            // } else {
+            //     for (let index = 0; index < each.length; index++) {
+            //         each[index].checked = false;
+            //     }
+            // }
+            console.log(allBox.checked);
+            for (let index = 0; index < each.length; index++) {
+                each[index].checked = allBox.checked;
+            }
+        }
+        for (let index = 0; index < each.length; index++) {
+            each[index].onclick = function () {
+                // 声明一个flag控制全选按钮是否选中
+                let flag = true;  // 每次点击each[i] 默认全选框被选中
+                for (let index = 0; index < each.length; index++) {  // 内循环包含在function里面 因此作用域不同 可以都用i
+                    if (!each[index].checked) {  // !each[i].checked 返回false 意思是某一个按钮没有被选中
+                        flag = false;
+                    }
+                }
+                allBox.checked = flag;
+            }
+            
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    history对象 让我们能够与浏览器历史记录进行交互 该对象包含用户(在浏览器窗口中)访问过的URL
+    history对象方法:
+    back() 此异步方法转到浏览器会话历史的上一页 等价于history.go(-1)
+    forward() 此异步方法转到浏览器会话历史的下一页 等价于history.go(1)
+    go(参数) 通过当前页面的相对位置从浏览器历史记录异步加载页面 参数为 -1 的时候为上一页, 参数为 1 的时候为下一页, 参数值为 0 重新载入当前页面
+</head>
+
+<body>
+    <button>click</button>
+    <a href="http://www.baidu.com" target="_self" rel="noopener noreferrer">test</a>
+    <script>
+        let btn = document.querySelector('button');
+
+        btn.addEventListener('click', function () {
+            history.go(1);
+
+        })
+    </script>
+</body>
+
+</html>

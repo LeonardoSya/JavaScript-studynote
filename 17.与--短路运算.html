@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 1.布尔值参与的逻辑运算   // true && false == false 
+
+        // 2.值/表达式参与的逻辑运算  // 123  && 456 会发生什么？
+        短路运算(逻辑中断)  短路运算原理： 当多个表达式(值)时 左边的表达式(值)可以确定true / false时 就不再运算右边的表达式(值)
+
+        // 在前面学过在布尔值运算中 0 '' null undefined NaN为假 其余为真
+
+        逻辑与 一串运算从左往右数 有错误的就输出最前面错误的 全对就输出最后一个 （一旦不行就开摆
+        逻辑或 一串运算从左往右数 有正确的就输出最前面正确的 全错就输出最后一个 （瘸子里挑将军
+        console.log(null && 1);  // null
+        console.log(123 && 834);  // 834
+        console.log(1 + 2 && 0 && 2314);  // 0
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

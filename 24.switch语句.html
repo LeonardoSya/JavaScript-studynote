@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>switch</title>
+    switch也是多分支语句 用于基于不同条件执行不同代码 也可以实现多选一
+    它主要是针对变量设置一系列特定值的选项
+
+    switch 转换、开关
+
+    执行思路: key(表达式)里的返回值 匹配 value1、value2…… 匹配到就进入对应执行语句然后break(退出) 否则视为default
+
+    switch执行效率高于if else if 因为switch直接跳转 ifelseif是从上往下一个个判断
+    因此switch针对“特定值” 而不是一些表达式
+
+    key中 开发时常写成一个变量 如num
+    num和case进行匹配时必须全等(值、数据类型均一致, num === 2)
+    <script>
+        switch (key) {
+            case value1:
+
+                break;
+            case value2:
+
+                break;
+
+            default:
+                break;
+        }
+
+        示例:
+        var num = 2  // 如果这里写 num = '2' 则无法匹配（因为数据类型不同）  这说明key变量与case匹配 必须数据类型和值都相等
+        switch (num) {
+            case 1:
+                console.log('this is 1');
+                break;
+              // 如果这里不写break 则继续进行下一个case，直到碰到break退出switch
+            case 2:
+                console.log('this is 2');
+                break;
+            default:
+                console.log('404 NOT FOUND');
+                break;
+        }
+        // 控制台输出 this is 2
+
+    switch 和 ifelseif 的区别
+    一般情况下可以相互替换
+    switch适合处理case为比较确定值的情况 ifelse则更为灵活 常用于范围判断
+    switch直接跳到执行语句 效率较高 ifelse一个一个判断比较慢
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>运用临时变量 交换两个变量的值</title>
+    <script>
+        //     // 0.声明一个临时变量为空
+        //     var temp;
+        //     var apple1 = '青苹果1号';
+        //     var apple2 = '红苹果2号';
+        //     // 1.把apple1给临时变量
+        //     temp = apple1;
+        //     // 2.把apple2给apple1
+        //     apple1 = apple2;
+        //     // 3.把临时变量里的值 给apple2
+        //     apple2 = temp;
+        //     // 4.输出 
+        //     console.log(apple1);
+        //     console.log(apple2);
+        // 
+
+        var temp;
+        var num1 = 1;
+        var num2 = 2;
+        temp = num1;
+        num1 = num2;
+        num2 = temp;
+        console.log(num1);
+        console.log(num2);
+
+        var quest1 = prompt('quest1');
+        var quest2 = prompt('quest2');
+        alert('年龄:' + quest1 + '\n地址:' + quest2);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

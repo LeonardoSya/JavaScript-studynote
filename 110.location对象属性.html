@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    URL: 统一资源定位符(Uniform Resource Locator, URL) 是互联网是标准资源的地址 互联网上每个文件都有一个唯一的URL 它包含的信息指出文件的位置以及浏览器应该如何处理它
+    URL一般的语法格式:
+    protocol://host[:port]/path/[?query]#fragment
+    例: http://www.itcast.cn/index.html?name=andy&age=18#link
+
+    protocol 通信协议 常用的http,ftp,maito等
+    host 主机(域名) www.mdn.com
+    port 端口号 可选 省略时使用方案的默认端口 如http的默认端口为80
+    path 路径 一般用来表示主机上的一个目录或文件地址
+    query 参数 以键值对的形式 通过&分隔
+    fragment 片段 #后面内容 常用于锚点链接
+
+
+    window对象提供了location属性用于获取或设置窗体的URL, 并且可以用于解析URL, 因为这个属性返回的是一个对象, 所以这个属性也称为location对象
+    location对象的属性:
+    location.href 获取或设置 整个URL
+    location.host 返回主机(域名)
+    location.port 返回端口号 如果未写端口号则返回空字符
+    location.pathname 返回路径
+    location.search 返回参数
+    location.hash 返回片段 #后面内容 常用于锚点链接
+    比较重要的是href和search
+</head>
+
+<body>
+    <button>click</button>
+    <div></div>
+
+
+    <!-- // 获取URL参数 数据在不同页面中传递 -->
+    <!-- /* 表单要有表单域才能提交 */ -->
+    <form action="79.案例34_获取URL参数.html" target="_blank">
+        用户名: <input type="text" name="user_name" id="user_name">
+        <input type="submit" id="submit" value="登录">
+    </form>
+
+
+    <script>
+        // click btn后跳转到另一个页面
+        let btn = document.querySelector('button');
+        let div = document.querySelector('div');
+        btn.addEventListener('click', function () {
+            location.href = 'https://developer.mozilla.org/zh-CN/';   // 在浏览器中跳转页面 仍然属于BOM的一部分
+        })
+        // 5秒后自动跳转页面
+        let coundDownTime = 5;
+        setInterval(() => {
+            if (coundDownTime == 0) {
+                location.href = 'https://www.csdn.net/';
+            } else {
+                div.innerHTML = coundDownTime + '秒后自动为您跳转到CSDN';
+                coundDownTime--;
+            }
+        }, 1000);
+
+
+    </script>
+</body>
+
+</html>

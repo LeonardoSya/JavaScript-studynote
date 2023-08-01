@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    原型用来解决构造函数浪费内存的问题
+    构造函数通过原型分配的函数 是所有对象所共享的
+    js中每一个构造函数都有一个prototype属性 指向另一个对象 所以我们也称为原型对象 原型对象可以挂载函数 对象实例化不会多次创建原型上函数 节约内存
+    因此我们可以把那些公共的方法(函数) 直接定义在prototype对象上 这样所有对象实例都能共享这些方法
+    构造函数和原型对象中的this都指向实例化的对象
+</head>
+
+<body>
+    <script>
+        function Person(name, age) {
+            this.name = name
+            this.age = age
+            this.move = () => { console.log('move'); }
+        }
+        // 实例对象 获得了构造函数中封装的所有逻辑
+        const zyy = new Person('qja', 18)
+        const zyyyyyy = new Person('qjaaaa', 19)
+
+        console.dir(Person.prototype);   // dir是以对象形式打印  obj.prototype写法是属性 但是是原型对象
+        // 既然obj.prototype是对象 就可以采取赋值操作或挂载函数
+        Person.prototype.moveee = () => { console.log('move'); }   // 等价于obj.move = func...   公共的方法可以写到原型对象上
+        zyy.move() // 调用
+        console.log(zyy.moveee === zyyyyyy.moveee);   // true 这说明实例化的所有对象 调用的都是同一个函数
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .nav ul {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="nav">
+        <li>
+            <a href="">wb</a>
+            <ul>
+                <li>sixing</li>
+                <li>pinglun</li>
+                <li>@w</li>
+            </ul>
+        </li>
+        <li>
+            <a href="">wb</a>
+            <ul>
+                <li>sixing</li>
+                <li>pinglun</li>
+                <li>@w</li>
+            </ul>
+        </li>
+        <li>
+            <a href="">wb</a>
+            <ul>
+                <li>sixing</li>
+                <li>pinglun</li>
+                <li>@w</li>
+            </ul>
+        </li>
+        <li>
+            <a href="">wb</a>
+            <ul>
+                <li>sixing</li>
+                <li>pinglun</li>
+                <li>@w</li>
+            </ul>
+        </li>
+    </ul>
+
+    <script>
+        // nav里的li都有鼠标经过效果 循环注册鼠标事件
+        // 原理：鼠标经过li 里面的第二个children ul显示 当鼠标离开 ul隐藏
+        let nav = document.querySelector('.nav');
+        let lis = nav.children;  // 得到4个li
+        for (let i = 0; i < lis.length; i++) {
+            lis[i].onmouseover = function () {
+                lis[i].children[1].style.display = 'block';
+            }
+            lis[i].onmouseout = function () {
+                lis[i].children[1].style.display = 'none';
+            }
+        }
+    </script>
+</body>
+
+</html>

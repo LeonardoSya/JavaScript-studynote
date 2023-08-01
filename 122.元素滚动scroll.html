@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    scroll滚动 scroll相关属性可以动态的得到该元素的大小、滚动距离等
+    element.scrollTop 返回被卷去的上侧距离
+    element.scrollLeft 返回被卷去的左侧距离
+    element.scrollWidth 返回自身实际的宽度 不含border 含padding
+    element.scrollHeight 返回自身实际的高度 不含border 含padding
+    以上返回数值不带单位
+
+    在滚动条拖动的时候, 有一部分内容被卷入上部隐去, 这部分被卷去上侧的距离就是scrollTop
+
+    offset client scroll区别
+    offset包含border 其他俩不包含
+    scroll包含盒子中文字超出的部分
+
+    offset最常用于获取 元素的位置 常用offsetLeft\offsetTop
+    client常用于获取 元素大小 常用clientWidth\clientHeight
+    scroll常用于获取 滚动距离 常用scrollTop\scrollLeft
+    <style>
+        div {
+            width: 20px;
+            height: 20px;
+            background-color: #00afef73;
+            border: 5px solid red;
+            padding: 5px;
+            overflow: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        —— —— —— —— —— ———— —— —— —— —— ———— —— —— —— —— ———— —— —— —— —— ———— —— —— —— —— ———— —— —— —— —— ———— —— —— —— —— ———— —— —— —— —— ———— —— —— —— —— ———— —— —— —— —— ———— —— —— —— —— ———— —— —— —— —— ———— —— —— —— —— ———— —— —— —— —— ———— —— —— —— —— ——
+    </div>
+
+    <script>
+        let div = document.querySelector('div');
+        console.log(div.scrollWidth);   // 69+5 = 74
+        console.log(div.clientWidth);   // 20+10 = 30
+        console.log(div.scrollHeight);  // 1581+5 = 1586
+        console.log(div.clientHeight);  // 20+10 = 30
+
+        div.addEventListener('scroll', function () {
+            console.log(div.scrollTop);  // div滚动时 不断返回被卷去的上部值
+        })
+    </script>
+</body>
+
+</html>

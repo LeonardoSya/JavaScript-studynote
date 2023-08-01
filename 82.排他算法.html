@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>排他思想</title>
+    如果有同一组元素 我们想要某一个元素实现某种样式 需要用到循环的排他思想(干掉其他人 留下我自己)
+</head>
+
+<body>
+    <button>按钮1</button>
+    <button>按钮2</button>
+    <button>按钮3</button>
+    <button>按钮4</button>
+    <button>按钮5</button>
+
+    <img src="../CSS/img/bilibili.png" alt="" width="100px">
+
+    <script>
+        let btns = document.querySelectorAll('button');  // 获取事件
+        for (let i = 0; i < btns.length; i++) {
+            btns[i].onclick = function () {  // 绑定事件
+
+                 
+                console.log(i + 1);
+                // 要想点哪个按钮 哪个按钮变色 就先把所有按钮颜色去掉 再变更点击的按钮的颜色
+                for (let j = 0; j < btns.length; j++) {
+                    btns[j].style.backgroundColor = '';
+                }
+                btns[i].style.backgroundColor = 'pink';
+            }
+        }
+
+    
+        // 修改背景图片路径写法
+        let img = document.querySelector('img');
+        img.onclick = function () {
+            document.body.style.backgroundImage = 'url(' + this.src + ')';
+        }
+    </script>
+</body>
+
+</html>

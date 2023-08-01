@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    原型链(隐式原型链): 基于原型对象的继承使得不同构造函数的原型对象以链式结构关联在一起
+    因为只要是对象就有__proto__   __proto__都指向prototype 同时只要是prototype里面都有constructor 指向的是创造原型对象的那个构造函数
+
+    显示原型: 利用prototype属性查找原型 只是这个是函数类型数据的属性
+    隐式原型: 利用__proto__属性查找原型 这个属性指向当前对象的构造函数的原型对象 这个属性是对象类型数据的属性 所以可以在实例对象上使用
+
+    所以, 原型链就是一个查找规则:
+    1. 当访问一个对象的属性/方法时 首先查找这个对象自身有没有该属性
+    2. 如果没有就查找它的原型, 也就是__proto__指向的prototype原型对象
+    3. 如果还没有就查找原型对象的原型(Object的原型对象)
+    4. 以此类推一直找到Object为止(null)  原型链的尽头是Object.prototype
+    5. 因此, __proto__对象原型的意义就在于为对象成员查找机制 提供了一个方向 或者说一条路线
+    6. 可以使用instanceof运算符用于检测构造函数的prototype属性是否出现在某个实例对象的原型链上
+
+    正是原型链的存在 我们在创建对象、数组、函数等 都自带一些属性和方法 这些属性和方法在它们的原型上保存着
+    所以map()方法其实是 Array.prototype.map() 这个内置方法放在了js内置对象array的原型对象上  我们写arr.map()它一层层会往上找 能找到就能用
+    
+    在js中所有函数都可以看作是Function()的实例 它们也有__proto__对象原型 包括Object()的构造函数也是Function() 而Function()本身也是函数 它也有自己的实例
+    因此 函数的__proto__指向是Function.prototype
+</head>
+
+<body>
+    <script>
+        function Person() { }
+        const zyy = new Person()
+        console.log(zyy.__proto__.constructor);  // 指向Person()
+        // 既然原型对象也是对象 对象都有__proto__  那么Person的原型对象的constructor指向谁呢?
+        console.log(Person.prototype.__proto__.constructor);  //  ƒ Object() { [native code] }   说明Person.prototype.__proto__指向Object.prototype  因为__proto__指向的一定是原型对象
+        console.log(Person.prototype.__proto__ === Object.prototype);  // true
+        //  这说明js内置了一个Object对象(它也是个构造函数) 而Person()是Object对象的实例
+
+        console.log(Object.prototype.__proto__);  // 指向null  说明往上走到头了
+
+        // instanceof运算符 检测构造函数的prototype属性是否出现在某个实例对象的原型链上
+        console.log(zyy instanceof Person, zyy instanceof Object, zyy instanceof Array, [1,2,3] instanceof Array);  // true true false true
+        console.log(Array instanceof Object);  // true  数组也是一个对象 万物皆对象
+        console.log(Array.prototype.__proto__.constructor);  //  ƒ Object() { [native code] }  数组的原型对象的构造函数也是顶层Object 万物皆对象
+    
+        // 在js中所有函数都可以看作是Function()的实例 它们也有__proto__对象原型 包括Object()的构造函数也是Function() 而Function()本身也是函数 它也有自己的实例  因此 函数的__proto__指向是Function.prototype
+        console.log(Function === Person.constructor);  // true
+        console.log(Function === Object.constructor);  // true
+        console.log(Function === Function.constructor);  // true
+        console.log(Function.__proto__ === Function.prototype);  // true
+        console.log(Person.__proto__ === Function.prototype);  // true
+        console.log(Person.__proto__ === Function.__proto__);  // true
+        console.log(Function.prototype.__proto__ === Object.prototype);  // true
+    </script>
+</body>
+
+</html>

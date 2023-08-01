@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浅拷贝</title>
+    浅拷贝和深拷贝只针对引用类型(复杂类型) 因为简单类型不需要拷贝 直接赋值就能解决问题
+    浅拷贝: 拷贝的是地址 拷贝对象后 里面的属性值是简单数据类型则直接拷贝值,属性值是引用数据类型则拷贝的是地址
+
+    常见方法:``````````````````````
+    拷贝对象: Object.assgin() 或 {...obj}
+    拷贝数组: Array.prototype.concat() 或 [...arr]
+
+    直接赋值的方法 只要是对象都会互相影响 因为是直接拷贝对象栈里面的地址
+    浅拷贝如果是一层对象 不相互影响 如果出现多层对象浅拷贝还是会相互影响
+</head>
+
+<body>
+    <script>
+        const obj = {
+            name: 'zyy',
+            age: 18,
+            add: {
+                address: '北京'
+            }
+        }
+        const o = obj
+        o.age = 20
+        console.log(o.age);  // 20
+        console.log(obj.age);  // 20   原因是 堆和栈 obj在栈里存地址 堆里存对象  复制的o是另一个地址 但指向堆里的是同一个对象 
+        // 这意味着直接复制存在风险
+
+        // 浅拷贝
+        // const shallowCopy = {}
+        // Object.assign(shallowCopy, obj)  // 浅拷贝对象
+        const shallowCopy = { ...obj }
+        shallowCopy.age = 11
+        console.log(shallowCopy.age, obj.age);  // 11 20
+
+        shallowCopy.add.address = '江苏'
+        console.log(shallowCopy.add.address, obj.add.address);  // 江苏 江苏
+        // 说明浅拷贝只适合于单层对象 如果多层对象(对象里面又套了复杂数据类型)就会出问题 因为它只拷贝地址
+
+    </script>
+</body>
+
+</html>2

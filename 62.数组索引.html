@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组索引</title>
+    indexOf(数组元素) 能够返回该数组元素的索引号 从前往后找 它只返回第一个满足条件的索引号
+    lastIndexOf(数组元素) 从后往前找
+    <script>
+        let arr = ['red', 'blue', 'pink', 'blue'];
+        console.log(arr.indexOf('blue'));   // 返回1  
+        console.log(arr.indexOf(2222));  // 返回-1  数组里没有该元素
+        console.log(arr.lastIndexOf('blue'));  //返回4
+
+
+        // 案例 数组去重
+        function fn(arr) {
+            let newArr = new Array();
+            for (let i = 0; i < arr.length; i++) {
+                if (newArr.indexOf(arr[i]) === -1) {
+                    newArr.push(arr[i]);
+                }
+            }
+            return newArr;
+        }
+        let demo = fn(['c', 'a', 'z', 'a', 'x', 'a', 'x', 'c', 'b']);
+        console.log(demo);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>双重for循环 循环嵌套</title>
+    <script>
+        // for (var i = 1; i <= 5; i++) {
+        //     console.log('这是外层循环第' + i + '次');
+        //     for (var j = 1; j <= 4; j++) {
+        //         console.log('这是内层循环第' + j + '次');
+        //     }
+        // }
+
+        // 打印一行五个星
+        // var str = '';
+        // for (var i = 1; i <= 5; i++) {
+        //     for (var j = 1; j <= 5; j++) {
+        //         str = str + '星';
+        //     }
+        //     // 一行打印完毕另起一行
+        //     str = str + '\n';
+        // }
+        // console.log(str);
+
+        // var str = '',
+        //     line = prompt('一行几个呢'),
+        //     column = prompt('打印几行呢');
+        // for (var i = 1; i <= column; i++) {
+        //     for (var j = line; j >= line - i + 1; j--) {
+        //         str = str + '星'
+        //     }
+        //     str += '\n'
+        // }
+        // console.log(str);
+
+
+        // var line = prompt('请输入一个奇数作为每行有几个星');
+        // for (var k = 1; k >= 1; k++) {
+        //     if (line % 2 == 0) {
+        //         alert(line + '不是一个奇数哦');
+        //         line = prompt('请重新输入一个奇数作为每行有几个星');
+        //     } else {
+        //         break;
+        //     }
+        // }
+        // var column = prompt('请输入想要打印的行数'),
+        //     str = '',
+        //     blank = '',
+        //     num = 0;
+        // for (var i = 1; i <= column; i += 2) {
+        //     for (var j = i; j <= line; j++) {
+        //         str += '星';
+        //     }
+        //     num++;
+        //     for (var h = 1; h <= num; h++) {
+        //         blank += '\b';
+        //     }
+        //     str = '\n' + blank + str;
+        // }
+        // console.log(str);
+        // // 失败的
+
+        var line = prompt('请输入最底层有几颗星(奇数）');
+        for (var k = 1; k >= 1; k++) {
+            if (line % 2 == 0) {
+                alert(line + '不是一个奇数哦');
+                line = prompt('请重新输入最底层有几颗星(奇数）');
+            } else {
+                break;
+            }
+        }
+
+        line = 2 * line - 1;
+        var str = '';
+        for (var i = 1; i <= line; i += 2) {
+            for (var j = 1; j <= (line - i) / 2; j++) {
+                str += ' '
+            }
+            for (var h = 1; h <= i; h += 2) {
+                str += '星'
+            }
+            str += '\n'
+        }
+        console.log(str);
+        // 成功的
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

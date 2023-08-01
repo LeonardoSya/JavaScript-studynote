@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    DOM操作可以改变网页内容、结构和样式
+
+    改变文字内容 (这两个是属性 采取 element.innerText = 'aaa'; 的方法):
+    element.innerText 从起始位置到终止位置的内容 但它去除html标签 同时空格和换行也会去掉
+    element.innerHTML 从起始位置到终止位置的 全部内容 包括html标签 同时保留空格和换行
+
+    同时 这两个属性也是可读写的 可以获取元素里面的内容
+
+
+    <style>
+        p {
+            width: 200px;
+            height: 30px;
+            line-height: 30px;
+            color: rgb(8, 37, 62);
+            background-color: rgb(216, 92, 228);
+        }
+    </style>
+</head>
+
+<body>
+    <button>显示当前系统时间</button>
+    <div>当前的时间是</div>
+    <p></p>
+    <span class="span1">11</span> <br>
+    <span class="span2">11</span>
+</body>
+
+<script>
+    // 当我们点击btn div里的文字会发生变化
+    let btn = document.querySelector('button');
+    let div = document.querySelector('div');
+    let date = new Date();
+    function getDate() {
+        return date.getFullYear() + '年' + date.getMonth() + 1 + '月' + date.getDate() + '日';
+    }
+    btn.onmouseover = function () {
+        div.innerText = getDate();
+    }
+    btn.onmouseout = function () {
+        div.innerText = '当前的时间是';
+    }
+
+    // 当然 元素也可以不需要添加事件
+    let p = document.querySelector('p');
+    p.innerText = getDate();
+
+    // innerText 和 innerHtml
+    let span1 = document.querySelector('.span1');
+    let span2 = document.querySelector('.span2');
+    span1.innerText = '<strong>今天是</strong> 1月';
+    span2.innerHTML = '<strong>今天是</strong> 1月';   // innerHTML能够识别html标签 推荐使用
+
+
+    // 同时 这两个属性也是可读写的 可以获取元素里面的内容
+    console.log(p.innerHTML);
+</script>
+
+</html>

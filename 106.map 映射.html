@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    map 映射
+    map是js中的数据结构, 它允许存储键值对  在es6以前实现键/值式存储可以用Object, 也就是使用对象属性作为键, 再使用属性来引值
+    es6新特性map是一种新的集合类型, 为js带来真正的键/值存储机制  map大多数特性都可以通过object来实现
+
+
+
+    1. map()方法
+    项目中我们常常会遇到要对后端返回的数据进行修改, 从而达到符合我们前端开发人员的需要, 其中map是常用到的对数组元素进行修改的重要函数
+    map() 方法定义在js的array中, 它返回一个新的数组, 数组中的元素为原始数组调用函数处理后的值
+    值得注意的是, 
+    1. map()函数不会对空数组进行检测   
+    2. map()函数不会改变原始数组, 它返回的是一个新数组
+    <!-- array.map(function(currentValue, index, arr), thisValue) -->
+    数组中的每个元素都会执行函数 function(currentValue, index, arr) 
+    currentValue 必须 表述当前元素的值(item)
+    index 可选 当前元素的索引
+    arr 可选 当前元素属于的数组对象
+    thisValue 可选 对象作为该执行回调时使用, 传递给参数, 用作this的值
+
+    基本api
+
+    1. new Map()
+    使用new关键字和Map构造函数可以创建一个空映射
+    const m = new Map()
+    2. map.has()方法
+    该方法用来检查map中是否存在具有指定键的元素 返回布尔值
+
+    3. map.set()方法
+    该方法为map对象添加一个指定键(key)和值(value)的新元素
+
+    4. map.get(key)方法
+    该方法通过键查询值, 并返回值
+
+    5. size属性
+    该属性获取Map实例的长度
+
+    6. map.delete()方法
+    删除对应键的数据, 返回布尔值用来表示是否删除成功
+
+    7. map.clear()方法
+    清空Map实例
+
+    8. 
+    keys() 返回以插入顺序生成键 的迭代器
+    values() 返回以插入顺序生成值 的迭代器 
+    entries() 返回插入顺序生成[key, value]形式的数组
+
+    Object和Map
+    Map比Object节约内存、性能更好, 进行删除操作速度更快 但是进行查找操作的速度慢于Object
+</head>
+
+<body>
+    <script>
+
+        // 1. map() 方法
+        // 对原数组元素平方后再赋值给新的数组
+        const array = [1, 2, 3, 4, 5];
+        const newArray = array.map((item) => {
+            return item * item;
+        })
+        console.log(newArray);
+        // 
+        const arr = [2, 4, 7, 1, 3];
+        const newArr = arr.map((item) => {
+            if (item > 3) {
+                return item * item;
+            } 
+        })
+        console.log(newArr);
+
+        // 1. 创建映射
+        const m1 = new Map();
+        // 如果想在创建的同时初始化实例，可以给Map构造函数传入一个 可迭代对象 ，需要包含键/值对数组。
+        // 可迭代对象中的每个键/值对都会按照迭代顺序插入到新映射实例中(类似二维数组)
+        const m = new Map([
+            ['a', 1],
+            ['b', 2],
+            ['c', 3]
+        ]);
+        console.log(Array.from(m));  // 以数组形式输出这个Map
+
+
+        // 2. map.has()
+        m.has('b');  // true
+        // 给定一个整数数组nums和一个整数目标值target 要求在该数组中找出 和为target 的某两个整数并返回下标
+        // const nums = [1, 2, 4, 7, 3, 12, 5],
+        //       target = 7;
+        // const twoSum = function (nums, target) {
+        //     let map = new Map();
+        //     for (let i = 0; i < nums.length; i++) {
+        //         let x = target - nums[i];
+        //         if (map.has(x)) {
+        //             return ([map.get(x), i])
+        //         }
+        //         map.set(nums[i], i);
+        //     }
+        // }
+
+        // 3. map.set()
+        const myMap = new Map();
+        // 添加新元素至map对象
+        myMap.set('a', 1).set('b', 2);
+        // 在map对象中更新某个元素的值
+        myMap.set('a', 'xxxx');
+        console.log(Array.from(myMap));  // ['a', 'xxxx'], ['b', 2]
+
+        // 4. map.get()
+        m.get('a');  // 1
+
+        // 5. size属性
+        m.size;  // 3
+
+        // 6. map.delete()
+        m.delete('c');  // true
+
+        // 7. map.clear()
+        // m.clear();
+        // Array.from(m); // []
+
+        // 8. keys() values() entries()
+        Array.from(m.keys());  // ['a', 'b', 'c']
+        Array.from(m.values());  // [1, 2, 3]
+        Array.from(m.entries());  // ['a', 1], ['b', 2], ['c', 3]
+        // 比如通过名字快速查找对应的成绩
+    </script>
+</body>
+
+</html>

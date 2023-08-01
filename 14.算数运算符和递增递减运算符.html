@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    1.算数运算符: + - * / %(取余数/取模 9%2=1)
+    算数运算符也有优先级 eg. (1+2)*3=9
+    返回值: 表达式反馈回来的值
+    // 在程序中 2 = 1 + 1 把我们右边表达式计算完毕把返回值给左边
+    // eg. var num = 1 + 1;
+
+    2.递增和递减运算符 ++ -- 必须和变量配合使用 ++str 或 str++
+
+    <script>
+        // 判断一个数能否被3整除
+        console.log(34343553 % 3);  // 0 可以
+
+        // 浮点数进行算数运算容易出问题
+        console.log(0.1 + 0.2);  // 0.30000000000000004
+        // 尽量避免直接浮点数参与运算
+
+        // 判断num和0.3是否相等
+        var num = 0.1 + 0.2;
+        console.log(num == 0.3);  // false
+        // 因此不能直接 比较 两个浮点数
+
+
+        var num = 1;
+        ++num;   //  等价于 num = num + 1;
+        var str = 1;
+        num++;
+        console.log(num);
+        // 前置自增单独使用效果一样
+
+        var age = 10;
+        console.log(++age + 10); // 21   先自加 后返回原值
+        var add = 10
+        console.log(add++ + 10); // 20   先返回原值 后自加
+        // 意思就是 add++ 先返回add原来的值(10) 再 + 10 = 20
+        console.log(add);  // 11  因为add++ 此时已经变成11了
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

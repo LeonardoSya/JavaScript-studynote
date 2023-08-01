@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    offset系列属性可以 动态的得到该元素的位置(偏移)、大小等
+    注意: 获得元素距离带有定位父元素的位置 获得元素自身的大小(宽度高度) 返回的数值都不带单位
+
+    element.offsetParent 返回作为该元素带有定位的父级元素 如果父级全都没有定位则返回
+    element.offsetTop 返回元素相对带有定位父元素上方的偏移
+    element.offsetLeft 返回元素相对带有定位父元素左边框的偏移
+    element.offsetWidth 返回自身包括padding、border、内容区 的宽度, 返回数值不带单位
+    element.offsetHeight 返回自身包括padding、border、内容区 的高度, 返回数值不带单位
+
+    offset 和 style 区别
+    offset可以得到任意样式表中的样式值     style只能得到行内样式表中的样式值
+    offset获得的数值无单位                style.width获得的是带有单位的字符串
+    offsetWidth包含padding border width  style.width获得不包含padding和border的值
+    offset属性只读 只能获取不能赋值        style.width可读写 可以获取也可以赋值
+
+    所以 offset获取元素大小位置  style更改元素值
+<body>
+
+
+    <style>
+        body {
+            position: relative;
+            margin: 0;
+            padding: 0;
+        }
+
+        .father {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-color: #00aeef;
+            margin: 100px;
+        }
+        .son {
+            width: 100px;
+            height: 100px;
+            background-color: purple;
+            margin-left: 0;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+    </style>
+</body>
+</head>
+
+<body>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+    <div class="box"></div>
+    <script>
+        // element.offsetTop/Left  返回元素的偏移、位置 
+        let father = document.querySelector('.father');
+        let son = document.querySelector('.son');
+        console.log(father.offsetTop);
+        console.log(father.offsetLeft); 
+
+        // son以带有定位的父亲为准 如果没有定位或者父亲没有定位 则返回元素偏移量以body为准
+        console.log(son.offsetLeft);
+
+        // element.offsetWidth/Height  返回元素大小 注意:包含padding、border
+        console.log(father.offsetWidth);
+        
+        // element.offsetParent  返回带有定位的父亲 
+        console.log(son.offsetParent);  // 返回div.father  如果最近一级父亲没有定位则一直往上找直到body
+        console.log(son.parentNode);  // 返回最近一级的父亲 不管父亲有没有定位
+    
+
+        let box = document.querySelector('.box');
+        console.log(box.style.width);  // 无法得到内嵌样式表  的值 只能获得行内样式的值
+        console.log(box.offsetWidth);
+    </script>
+</body>
+
+</html>

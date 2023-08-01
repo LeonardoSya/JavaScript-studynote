@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    防抖(Debounce)和节流(Throttle)都是用来控制某个函数在一定时间内触发次数 两者都是为了减少触发频率 以便于提高性能或避免浪费资源 毕竟js操作dom对象的代价是十分昂贵的
+    
+    防抖应用场景:
+    搜索框搜索输入 只需用户最后一次输入完 再发送请求
+    手机号、邮箱验证输入检测
+
+    防抖Debounce: 单位时间内 频繁触发事件 只执行最后一次
+    高频率触发的事件 在指定的单位时间内 只响应最后一次 如果在指定时间内再次触发 则重新计算时间 (回城6秒 若被打断 再次回城需要再等6秒)
+
+    防抖实现方式:
+    1. lodash库提供的防抖: _.debocunce(fun, 时间)
+    2. 封装一个防抖函数
+
+    
+
+
+    <style>
+        .box {
+            background-color: #00afef60;
+            font-size: 22px;
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+    <script src="153.lodash.min.js"></script>
+</head>
+
+<body>
+    <input type="text" id="inp">
+    <div class="box"></div>
+    <script>
+        // 1. lodash库实现防抖
+        // 需求: 鼠标在盒子上移动 里面的数字就会变化
+        let i = 1
+        function mouseMove() {
+            document.querySelector('.box').innerHTML = i++
+            // 如果里面存在大量消耗性能的代码 如dom操作、数据处理等 可能造成卡顿
+        }
+        document.querySelector('.box').addEventListener('mousemove', _.debounce(mouseMove, 500))
+
+
+
+        // 封装防抖函数
+        function Debounce(fn, time) {
+            // 创建一个标记用来存放定时器的返回值
+            let timeout = null
+            return function () {
+                // 每当input事件触发 把前一个 setTimeout 清除
+                if(timeout) clearTimeout(timeout)
+                // 然后又创建一个新的 setTimeout 这样能够保证输入字符后等待的时间间隔内 还有字符输入的话 就不会执行 setTimeout 里面的内容
+                timeout = setTimeout(() => {
+                    // 在这里执行需要防抖的内容
+                    fn()
+                }, time);
+            }
+        }
+
+        const inp = document.querySelector('#inp')
+        // 测试防抖临时使用的函数
+        function sayHi() {
+            console.log('debounce');
+        }
+        inp.addEventListener('input', Debounce(sayHi, 1000))
+    </script>
+</body>
+
+</html>

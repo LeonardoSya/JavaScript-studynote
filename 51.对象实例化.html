@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    构造函数 如Hero() 抽象了对象的公共部分 封装到函数里 它泛指某一大类
+    创建对象 如new Hero() 特指某一个 通过new关键字创建对象的过程 称为 对象实例化
+
+    实例成员: 实例对象中的属性和方法
+    静态成员: 构造函数上的属性和方法
+    <script>
+        function Hero(name, position, score) {  // Hero不是一个对象 是泛指的某一大类  它类似java里面的 类(class)
+            this.name = name;
+            this.position = position;
+            this.score = score;
+            this.influence = function (influence) {
+                console.log(influence);
+            }
+        }
+
+        let mengQi = new Hero('梦奇', '打野', 10000);    
+        let liuBang = new Hero('刘邦', '上单', 9500);
+        console.log(mengQi.name);
+        console.log(liuBang['score']);
+        mengQi.influence('IDontWantToPlayThisGameAnyMore');
+        console.log(mengQi);  // 对象 特指 是一个具体事物  mengQi == {name:...  , position:... ,.....}
+
+        // 我们利用构造函数创建对象的过程称为 对象的实例化
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

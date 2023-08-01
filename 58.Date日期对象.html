@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    Date用来处理日期和时间 Date对象基于1970年1月1日(世界标准时间)起的毫秒数
+
+    Date和Math对象不一样 它只能通过调用Date构造函数(new)来实例化日期对象 以常规函数调用它(即不加new操作符)将会返回一个字符串而不是一个日期对象 必须实例化之后才能调用
+    实例化是指在面向对象的编程中，把用类创建对象的过程称为实例化。是将一个抽象的概念类，具体到该类实物的过程。实例化过程中一般由类名 对象名 = new 类名（参数1，参数2...参数n）构成。
+    <script>
+        let arr = new Array();  // 创建一个数组对象
+        let obj = new Object();  // 创建一个对象实例
+
+        let date1 = new Date();  // 创建一个日期对象  如果没有参数 返回系统当前时间
+        // 参数常用写法   数字型 2022, 01,
+         06   字符串型 '2022-1-6 8:8:8'
+        let date2 = new Date('1999-2-6');
+        console.log(date1.getFullYear());  // 当date1是空值 返回当前日期的年份  2023 今年是2023年
+        console.log(date2.getMonth() + 1);    // 返回当前日期的月份 但是是0-11 记得+1
+        console.log(date1.getDate());  // 返回当前日期是几号
+        console.log(date1.getDay());  // 返回当前周几 周日返回的是0
+        console.log(date1.getHours());  // 时
+        console.log(date1.getMinutes());  // 分
+        console.log(date1.getSeconds());  // 秒
+
+        // 获得距离1970.1.1至今总的毫秒数 (时间戳)
+        // 下面两种写法无区别
+        console.log(Date.now());
+        let date3 = +new Date();
+        console.log(date3);
+        // 如果有参数 则是1970至该参数时间的总的毫秒数
+
+
+
+        let month = date1.getMonth() + 1;
+        let day = ['日', '一', '二', '三', '四', '五', '六'];
+        let hour = date1.getHours();
+        let minute = date1.getMinutes();
+        let second = date1.getSeconds();
+        hour = hour < 10 ? '0' + hour : hour;
+        minute = minute < 10 ? '0' + minute : minute;
+        second = second < 10 ? '0' + second : second;
+        console.log(date1.getFullYear() + '年' + month + '月' + date1.getDate() + '日 ' + '星期' + day[date1.getDay()] + ' ' + hour + '时' + minute + '分' + second + '秒');
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

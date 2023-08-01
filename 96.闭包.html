@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>闭包closure</title>
+    闭包(closure)是一个函数以及其捆绑的周边环境状态的引用的组合 (闭包 = 内层函数 + 外层函数的变量)
+    换而言之, 闭包可以从内部函数访问外部函数的作用域 在一个函数内再定义一个函数, 这个内部函数一直保持有对外部函数中作用域的访问
+    在js中 闭包会随着函数的创建而同时被创建
+
+    闭包作用: 封闭数据 提供操作 外部也可以访问函数内部的变量
+    闭包应用: 实现数据的私有
+
+    闭包很有用, 因为它允许将函数与其操作的某些数据(环境)关联起来 这显然类似于面向对象编程。在面向对象编程中, 对象允许我们将某些数据(对象的属性)与一个或多个方法相关联
+    因此, 通常我们在使用只有一个方法的对象的地方, 都可以使用闭包
+    在Web中, 这种情况特别常见, 大部分我们所写的js代码都是基于事件定义某种行为, 然后将其添加到用户触发的事件之上(比如click或keydown)。我们的代码通常作为回调: 为响应事件而执行的函数
+
+    闭包可能引起内存泄漏
+</head>
+
+<body>
+    <script>
+        // 最简单的闭包
+        function outer() {
+            let a = 1;
+            function f() {
+                console.log(a);
+            }
+            f();
+        }
+        outer();
+
+        function init() {
+            let name = 'Mozilla';  // name 是一个被 init 创建的局部变量
+            function displayName() {  // displayName() 是定义在init()里的内部函数, 并且仅在init()函数体内可用，一个闭包
+                alert(name);  // 使用了父函数中声明的变量
+            }
+            displayName();
+        }
+        init();
+        // displayName() 没有自己的局部变量。然而，因为它可以访问到外部函数的变量，所以displayName() 可以使用父函数 init() 中声明的变量 name
+        // displayName() 函数内的 alert() 语句成功显示出了变量 name 的值(该变量在其父函数中声明)， 说明嵌套函数可访问声明于它们外部作用域的变量
+        // 这个词法作用域的例子描述了分析器如何在函数嵌套的情况下解析变量名
+
+        // 常见的闭包的形式 外部可以访问函数内部的变量
+        function out() {
+            let a = 10;
+            function fn() {
+                console.log(a);
+            }
+            return fn;  // 返回函数但不调用fn out()是调用者 这行关键代码使得函数外部可以访问内部变量  注意不要写() 因为不需要调用
+        }
+        // out();     //  out() === fn === function fn() {}  === log(a)
+        const fun = out();  // 相当于 const fun = function fn() {}     fun装的是一个函数
+        fun();  // 调用这个函数   这样就实现了外部函数调用内部函数的值
+
+        // 上面那块常见闭包形式的简约写法
+        function out() {
+            let i = 1;  //  i 虽然在局部作用域里 但是不会GC被回收 根据标记清除法能够从global一直找到 i
+            return function () {
+                console.log(i);
+            }
+        }
+        const fn = out();  // 当然 这产生了一定的内存泄漏问题
+        fn();
+
+        // 实现数据私有demo: 统计函数调用次数
+        function outer() {
+            let i = 0;  // i封装在函数内 成为了一个局部变量 同时允许被函数外部访问
+            return function fn() {
+                i++;
+                console.log(`函数被调用了${i}次`);
+            }
+        }
+        const func = outer();
+        func();  // 1
+        func();  // 2
+        func();  // 3 ...
+
+
+        function makeAdder(x) {
+            return function (y) {
+                return x + y;
+            };
+        }
+
+        var add5 = makeAdder(5);
+        var add10 = makeAdder(10);
+
+        console.log(add5(2));  // 7
+        console.log(add10(2)); // 12
+        // 在这个示例中，我们定义了makeAdder(x)函数，它接受一个参数x，并返回一个新的函数。返回的函数接受一个参数y，并返回x+y的值
+        // makeAdder 是一个函数工厂 它创建了将指定的值和它的参数相加求和的函数。
+        // 我们使用函数工厂创建了两个新函数 一个将其参数和5求和，另一个将其参数和10求和
+        // add5 和 add10 都是闭包，它们共享相同的函数定义，但是保存了不同的词法环境，在add5的环境中x为5，而在add10中x则为10
+
+        // 实用的闭包
+        // 假如我们想在页面上添加一些可以调整字号的按钮, 由于我们使用CSS中em等相对单位，页面中的其他元素也会相应地调整
+        // 以下是JavaScript
+        function makeSizer(size) {
+            return function () {
+                document.body.style.fontSize = size + 'px';
+            };
+        }
+        let size12 = makeSizer(12);
+        let size14 = makeSizer(14);
+        let size16 = makeSizer(16);
+        // size12\14\16三个函数分别把body的文本调整为12、14、16px，我们再分别把它们添加到btn.click上
+        document.querySelector('#size-12').onclick = size12;
+    </script>
+</body>
+
+</html>

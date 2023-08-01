@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    箭头函数实例化的函数对象与一般函数表达式创建的函数对象行为是大致相同的 任何可以使用函数表达式的地方都可以使用箭头函数
+    引入箭头函数的目的是更简短的函数写法 并且不绑定this
+
+    <!-- (参数) => {函数体} -->
+
+    箭头函数没有自己的this, arguments, super, new.target 但是有剩余参数 ...args
+    箭头函数表达式更适用于那些本来需要 匿名函数的地方
+    箭头函数不能用作构造函数
+    箭头函数属于 表达式函数 因此不存在函数提升
+    加括号的函数体返回对象字面量表达式
+
+    在箭头函数出现前 每个新函数根据它是被如何调用的来定义这个函数的this值
+    但是箭头函数不会创建自己的this 它只会从自己的作用域链上一层沿用this
+    因此DOM事件回调函数为了简便 还是不推荐在DOM事件中使用箭头函数
+</head>
+
+<body>
+    <form action=""></form>
+    <div>111</div>
+    <script>
+        const materials = ['1', '2', '3', '4'];
+        console.log(materials.map(materials => materials.length));
+
+        const sum = function (a, b) {
+            return a + b;
+        }
+        const sum1 = (a, b) => {
+            return a + b;
+        }
+        const sum2 = (a, b) => a + b;  // 省略大括号时不能写return
+
+
+
+        let div = document.querySelector('div');
+        div.addEventListener('click', () => { console.log(1); });
+
+        // 阻止表单的默认提交事件
+        const form = document.querySelector('form');
+        form.addEventListener('click', ev => ev.preventDefault());
+
+        // 箭头函数 返回一个对象
+        // 加括号的函数体返回对象字面量表达式
+        const fn = (name) => (  //形参
+            { username: name }  // 对象  属性名: 属性值
+        )
+        fn('qja');
+
+        // 剩余参数..args
+        const getSum = (...args) => {   // 当我不知道有几个实参的时候 可以形参写成 ...args
+            let sum = 0;
+            for (let i = 0; i < args.length; i++) {
+                sum += args[i];
+            }
+            return sum;
+        }
+        console.log(getSum(2, 3));
+
+        //  箭头函数不会创建自己的this
+        const user = {
+            name: 'qja',
+            sleep: function () {
+                console.log(this);  // 指向user
+                const fn = () => {
+                    console.log(this);  // 与上一层沿用 也指向user
+                }
+                fn();
+            }
+        }
+        user.sleep();  // 调用方法
+    </script>
+</body>
+
+</html>

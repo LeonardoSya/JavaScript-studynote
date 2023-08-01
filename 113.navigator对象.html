@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    navigator对象包含有关浏览器的信息 
+    它有很多属性, 最常用的是 userAgent  该属性返回由客户机发送到服务器的 user-agent 头部的值 可以识别 发起请求的用户代理软件的应用类型、操作系统、软件开发商以及版本号
+    userAgent是用户代理, 使得服务器能够识别客户使用的操作系统及版本、CPU类型、浏览器及版本、浏览器渲染引擎、浏览器语言、浏览器插件等等。
+</head> 
+
+<body>
+    <script>
+        // 比如，可以通过userAgent判断用户打开本页面的终端是移动端还是pc端，实现页面跳转
+        if (/*.....*/) {
+            window.location.href = '';  // 移动端 
+        } else {
+            window.location.href = '';  // pc端
+        };
+    </script>
+</body>
+
+</html>

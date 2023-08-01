@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 1.数字型
+        var num1 = 010,
+            num2 = 014;   // 数字前面加0 表示八进制
+        console.log(num1);  // 010转换为十进制是 8
+        console.log(num2);  // 014转换为十进制是 12
+
+        var num3 = 0xe;  // 数字前面加 0x 表示十六进制
+        console.log(num3);  // 0xe转换为十六进制是 14
+
+        console.log(Number.MAX_VALUE); // 表示js中数字最大值
+        console.log(Number.MIN_VALUE); // 表示js中数字最小值
+
+        console.log(Infinity); // 正无穷
+        console.log(-Infinity); // 负无穷
+        console.log('pink' - 1);  // NaN  Not a number 代表一个非数值
+
+        // 判断是不是非数字
+        console.log(isNaN(12));  // 用true和false 判断是不是非数字
+
+
+
+        // Number方法
+        // toFixed() 设置保留小数位的长度
+        const price = 12.345
+        console.log(price.toFixed(2));  // 保留2位
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

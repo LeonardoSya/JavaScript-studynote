@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">  // 禁用缩放写法user-scalable
+    <title>Document</title>
+    移动端click事件有300ms延迟 原因是移动端屏幕双击会缩放页面
+    解决方法
+    1. 禁用缩放
+    2. 利用touch事件自己封装这个事件解决延时
+    3. fastclick插件  js插件是js文件
+
+    <script src="93.fastclick.js"></script>
+</head>
+
+<body>
+    <script>
+        // 2. 原理：手指触屏时 记录当前触摸时间  手指离开屏幕时 用离开时间 - 触摸时间   如果时间差小于150ms并且没有滑动过屏幕 则定义为点击
+        // 封装tap 解决click 300ms 延时
+        function tap(obj, callback) {
+            let isMove = false;  // 声明是否滑动的判断
+            let startTime = 0;  // 声明触屏时间
+            obj.addEventListner('touchstart', function (e) {
+                startTime = Date.now();  // 记录触屏时间
+            });
+            obj.addEventListner('touchmove', function (e) {
+                isMove = true;  // 如果滑动屏幕 则定义为拖拽 不定义为click
+            });
+            obj.addEventListner('touchend', function (e) {
+                if (!isMove && (Date.now() - startTime < 150)) {   
+                    callback && callback();  
+                }
+                isMove = false;  // 取反 重置
+                startTime = 0;
+            });
+        }
+        tap(div, function () {
+            // 执行代码
+        })
+
+        // 3. fastclick 插件  (见93.fastclick.js)
+        if ('addEventListener' in document) {   // document是否有addEventListener事件
+                document.addEventListener('DOMContentLoaded', function () {   // 等页面里的 DOM 元素加载完毕就立刻执行
+                    FastClick.attach(document.body);
+                }, false);
+            }
+        // 页面中所有元素 的延时问题都已经解决
+    </script>
+</body>
+
+</html>

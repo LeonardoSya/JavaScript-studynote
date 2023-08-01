@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    事件流 描述的是从页面中接收事件的顺序 事件发生时会在元素节点之间按照特定的顺序传播 事件传播过程即dom事件流
+    DOM(文档对象模型)结构是一个树型结构, 当一个HTML元素产生一个事件时, 该事件会在元素结点与根结点之间的路径传播, 路径所经过的结点都会收到该事件, 这个传播过程可称为DOM事件流。
+
+    dom事件流分为三个阶段: 捕获阶段、当前目标阶段、冒泡阶段 (捕获阶段类似构造函数 冒泡阶段类似解析构造函数)
+    一个事件触发后，会在子元素和父元素之间传播，这个传播分三个阶段：
+    1.捕获阶段: 从window对象依次向下传播, 到达目标节点, 即为捕获阶段。捕获阶段不会响应任何事件
+    2.目标阶段: 在目标节点触发事件, 即为目标阶段
+    3.冒泡阶段: 从目标阶段依次向上传播, 到达window对象, 即为冒泡阶段。【事件代理就是利用事件冒泡的机制把里层元素需要响应的事件绑定到外层元素身上】
+
+    js代码只能执行捕获/冒泡中的任意一阶段
+    onclick\attachEvent只能得到冒泡阶段
+    addEventListener(type, listener,[, useCapture])第三个参数如果是true 表示在事件[捕获]阶段调用事件处理程序; 如果是false(不写默认是false)表示在事件[冒泡]阶段调用事件处理程序
+
+    实际开发中我们较少使用事件捕获 更关注事件冒泡
+    onblur onfocus onmouseenter onmouseleave 这些事件没有冒泡
+    <style>
+        .father {
+            width: 50px;
+            height: 50px;
+            background-color: pink;
+        }
+        .son {
+            width: 20px;
+            height: 20px;
+            background-color: #00aeef;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 代码验证事件流 -->
+    <div class="father">
+        <div class="son">2</div>
+    </div>
+    <script>
+        let son = document.querySelector('.son');
+        son.addEventListener('click', function () {
+            console.log('2');
+        }, true);        // 第三个参数是true  处于捕获阶段: document -> html -> body -> father -> son 
+        
+        let father = document.querySelector('.father');
+        father.addEventListener('click', function () {
+            console.log('1');   
+        }, true);    // father和son都是true 因为都处于捕获阶段 所以先执行father再执行son 先log1再2
+
+        // 冒泡阶段则相反 若father和son都是false 则都处于冒泡阶段 先执行son再执行father 先log2再1
+        
+    </script>
+</body>
+
+</html>

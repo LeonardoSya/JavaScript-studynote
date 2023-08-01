@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="153.lodash.min.js"></script>  
+</head>
+
+<body>
+    
+    <script>
+        // 2. js库lodash里面cloneDeep内部实现了深拷贝
+        const objects = [{ 'a': 1 }, { 'b': 2 }]
+
+        const deep = _.cloneDeep(objects)
+
+        console.log(deep);
+        console.log(deep[0] === objects[0]);  // false
+
+        // 3. 利用JSON.stringify()实现深拷贝
+        // JSON.stringify(obj)  // 把对象转化为 JSON 字符串   字符串是简单数据类型 所以地址不再指向它
+        // JSON.parse(obj)  // 把 JSON 字符串 转化为对象
+        const result = JSON.parse(JSON.stringify(objects))
+        console.log(result);
+        console.log(result[0] === objects[0]);  // false
+    </script>
+</body>
+
+</html>

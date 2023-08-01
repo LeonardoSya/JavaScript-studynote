@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for循环</title>
+    循环的目的：重复执行某些代码
+
+    一组被重复执行的语句叫做 循环体
+    能否继续重复执行取决于 终止条件
+    循环体和循环的终止条件组成的语句叫做 循环语句
+    for重复执行某些代码 通常跟计数有关系
+
+    断点调试可以用帮助我们观察程序的运行过程 解决bug
+    <script>
+        for (初始化变量; 条件表达式; 操作表达式) {
+            // 循环体
+        }
+
+        // 初始化变量 就是用var生成的一个普通变量 通常用于作为计数器使用
+        // 条件表达式 是终止条件
+        // 操作表达式 是每次循环最后执行的代码 通常用于计数器变量进行更新(递增或递减)
+
+        for (var i = 1; i <= 100; i++) {
+            console.log('Hello World');
+        }
+
+        // 执行过程:
+        // var i = 1;
+        // i <= 100;
+        // console.log('Hello World');
+        // i++;  // i = 2
+        // i <= 100;
+        // console.log('Hello World');
+        // i++;  // i = 3
+        // ......
+        // i = 101 break;
+
+
+        案例
+        var num = prompt('请输入次数');
+        for (var i = 1; i <= num; i++) {
+            console.log('让用户控制输出的次数');
+        }
+
+        for (var i = 1; i <= 100; i++) {
+            if (i == 1) {
+                console.log('他出生了');
+            } else if (i == 100) {
+                console.log('他走了');
+            } else {
+                console.log('他今年' + i + '岁了');
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            position: relative;
+        }
+
+        .login {
+            display: none;
+            position: fixed;
+            /* left: 50%;
+            top: 50%; */
+            z-index: 1;
+            transform: (-50%, -50%);
+            background-color: #00aeefb3;
+        }
+
+        .bg {
+            background-color: #90909076;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-header"><a href="javascript:;" id="link">click</a></div>
+    <div class="login" id="login">
+        <div class="login-title" id="title">login in<span><a href="javascript:void(0);" id="closeBtn"
+                    class="close-login">close</a></span></div>
+        <div class="login-input-content">
+            <div class="login-input"><label for="">username:</label><input type="text" placeholder="username"
+                    name="info[username]" id="username" class="username"></div>
+            <div class="login-input"><label for="">password:</label><input type="text" placeholder="password"
+                    name="info[password]" id="password" class="username"></div>
+        </div>
+        <div class="log-button" id="logBtn"><a href="javascript:void(0);" id="login-button-submit"></a></div>
+        <!-- 遮盖层 -->
+        <div class="bg" id="login-bg"></div>
+    </div>
+
+    <script>
+        let link = document.querySelector('.login-header'),
+            bg = document.querySelector('#login-bg'),
+            login = document.querySelector('.login'),
+            closeIt = document.querySelector('#closeBtn');
+        link.addEventListener('click', function () {
+            login.style.display = 'block';
+            bg.style.display = 'block';
+        });
+        closeIt.addEventListener('click', function () {
+            login.style.display = 'none';
+        });
+
+        let mousedown = document.querySelector('#title');
+        title.addEventListener('mousedown', function (e) {
+            let x = e.pageX - login.offsetLeft;
+            let y = e.pageY - login.offsetTop;
+            console.log([x, y]);
+            document.addEventListener('mousemove', fn);
+            function fn(e) {
+                login.style.left = e.pageX - x + 'px';
+                login.style.top = e.pageY - y + 'px';
+                console.log([x, y, login.offsetLeft, login.offsetTop]);
+            }
+            document.addEventListener('mouseup', function () {
+                document.removeEventListener('mousemove', fn)
+            })
+        });
+    
+
+
+    </script>
+</body>
+
+</html>

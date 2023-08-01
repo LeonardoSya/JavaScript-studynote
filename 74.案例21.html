@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            height: 50px;
+            width: 100px;
+            line-height: 50px;
+            background-color: #000;
+            color: #ccc;
+            border-radius: 20%;
+            text-align: center;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        let date = new Date();
+        function hello() {
+            if (5 <= date.getHours < 12) {
+                return 'morning';
+            } else if (date.getHours < 18) {
+                return 'afternoon';
+            } else if (date.getHours < 21) {
+                return 'evening';
+            } else {
+                return 'night';
+            }
+        }
+        let div = document.querySelector('div');
+        div.onclick = function () {
+            div.innerHTML = hello();
+        }
+    </script>
+</body>
+
+</html>
